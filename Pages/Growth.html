@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Role of Growth Factors in Wound Healing</title>
+
+        <link rel="stylesheet" href="../Css/Growth.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div id="pdf-content">
+            
+            <!-- PAGE 18 -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>ROLE OF GROWTH FACTORS IN WOUND HEALING</h1>
+                    </div>
+
+                    <div class="content-section">
+                        <p>
+                            Wound healing is a highly orchestrated biological process requiring precise communication between varied cell types, the extracellular matrix (ECM), and the local microenvironment. The master regulators of this complex cellular dialogue are <strong>Growth Factors (GFs)</strong> and cytokines. These potent, naturally occurring polypeptides act as molecular messengers, binding to specific transmembrane receptors on target cells to trigger intracellular signaling cascades that drive cell survival, proliferation, migration, and differentiation.
+                        </p>
+                        
+                        <p>
+                            In acute wounds, growth factors are released in a highly controlled, spatio-temporal sequence. Immediately following tissue injury, degranulating platelets release a massive initial wave of signaling molecules to initiate hemostasis and recruit inflammatory cells. As healing progresses into the proliferative phase, macrophages and fibroblasts become the primary factories for GF synthesis, sustaining the regenerative effort.
+                        </p>
+
+                        <!-- FIGURE 9 -->
+                        <div class="center-figure">
+                            <img src="../Img/Growth_Factors_Healing.jpg" alt="Mechanism of Growth Factors">
+                            <div class="figure-caption">Fig ix. Cellular Targets and Mechanisms of Key Growth Factors in Wound Regeneration</div>
+                        </div>
+
+                        <p>
+                            As illustrated in <strong>Fig ix</strong>, the transition from the inflammatory phase to the proliferative and remodeling phases is heavily dependent on specific growth factor profiles. Each phase is dominated by a distinct biochemical signature. 
+                        </p>
+                        <p>
+                            A deficiency or imbalance in these biochemical signals—a hallmark of chronic, non-healing wounds such as diabetic foot ulcers and venous stasis ulcers—results in a stalled, hyper-inflammatory state. In these pathological environments, cellular senescence and elevated matrix metalloproteinase (MMP) activity aggressively degrade both the extracellular matrix and the essential endogenous growth factors themselves, trapping the wound in a vicious cycle of tissue destruction.
+                        </p>
+
+                    </div>
+
+                    <div class="page-number">18</div>
+                </div>
+            </div>
+
+            <!-- PAGE 19 -->
+            <div class="page">
+                <div class="border-container">
+                    <div class="content-section">
+                        
+                        <p>
+                            Understanding the specific roles of individual growth factors has allowed researchers to develop targeted biological therapies. By delivering recombinant human growth factors directly into a wound bed, clinicians can artificially kickstart the stalled proliferative phases of chronic wounds. The following table summarizes the most critical growth factors involved in wound repair and their specific physiological mechanisms.
+                        </p>
+
+                        <!-- TABLE 6 -->
+                        <table class="academic-table">
+                            <thead>
+                                <tr>
+                                    <th>Growth Factor</th>
+                                    <th>Cellular Source</th>
+                                    <th>Primary Physiological Function</th>
+                                    <th>Clinical Target</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>PDGF</strong><br>(Platelet-Derived Growth Factor)</td>
+                                    <td>Platelets, macrophages, endothelial cells.</td>
+                                    <td>Strong mitogen and chemoattractant. Stimulates fibroblast proliferation and ECM deposition.</td>
+                                    <td>Approved clinically (Becaplermin) for the treatment of chronic lower extremity diabetic ulcers.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>VEGF</strong><br>(Vascular Endothelial GF)</td>
+                                    <td>Keratinocytes, macrophages, fibroblasts.</td>
+                                    <td>Master regulator of <strong>angiogenesis</strong>. Promotes endothelial cell migration and capillary formation.</td>
+                                    <td>Critical for overcoming hypoxia in ischemic wounds and ensuring graft survival.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TGF-β</strong><br>(Transforming Growth Factor-beta)</td>
+                                    <td>Platelets, T-cells, macrophages.</td>
+                                    <td>Promotes myofibroblast differentiation and massive collagen synthesis. Regulates inflammation.</td>
+                                    <td>Essential for matrix repair, though excessive TGF-β activity leads to hypertrophic scarring.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>EGF</strong><br>(Epidermal Growth Factor)</td>
+                                    <td>Platelets, macrophages.</td>
+                                    <td>Potent stimulator of keratinocyte migration and proliferation over the dermal matrix.</td>
+                                    <td>Accelerates <strong>epithelialization</strong> and wound closure in partial-thickness burns.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- AGGRESSIVELY CONDENSED TEXT FOR PAGE 19 -->
+                        <p>
+                            While topical recombinant growth factors show high efficacy, their clinical use is hindered by chronic wound microenvironments, where proteolytic enzymes rapidly degrade unprotected proteins. To overcome this, modern tissue engineering encapsulates these fragile molecules within biodegradable nanoparticles and smart hydrogels. These advanced delivery vehicles protect the growth factors from premature degradation and ensure a sustained, physiological release, successfully pushing chronic wounds toward functional closure.
+                        </p>
+                        
+                    </div>
+
+                    <div class="page-number">19</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Growth_Factors.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

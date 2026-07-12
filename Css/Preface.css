@@ -59,6 +59,7 @@ body {
     height: 1030px;
     box-sizing: border-box;
     padding: 60px 50px;
+    padding: 60px 40px;
     display: flex;
     flex-direction: column;
     position: relative;

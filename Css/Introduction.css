@@ -65,6 +65,7 @@ body {
     box-sizing: border-box;
     /* REDUCED padding from 50px to 35px to give text more vertical room inside the box */
     padding: 35px 50px;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
     position: relative;

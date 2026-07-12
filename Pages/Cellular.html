@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Cellular Therapies & Stem Cells</title>
+
+        <link rel="stylesheet" href="../Css/Cellular.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div id="pdf-content">
+            
+            <!-- PAGE 16 -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>CELLULAR THERAPIES & STEM CELLS</h1>
+                    </div>
+
+                    <div class="content-section">
+                        <p>
+                            While traditional grafting and dermal scaffolds rely on the mechanical transfer of solid tissues or structural matrices, the latest frontier in reconstructive wound care involves <strong>cellular therapies</strong>. This approach shifts the paradigm from solid tissue grafting to the liquid application of isolated, highly potent regenerative cells, drastically reducing donor site morbidity while maximizing wound coverage in massive burns.
+                        </p>
+                        
+                        <p>
+                            The most successful clinical manifestation of this is the <strong>Autologous Cell Harvesting Device (ACHD)</strong>, colloquially known as "spray-on skin." Instead of expanding skin mechanically via a mesher, this technique expands skin biologically. A postage-stamp-sized biopsy of the patient's healthy skin is harvested and immediately processed in the operating room. 
+                        </p>
+
+                        <!-- FIGURE 8 -->
+                        <div class="center-figure">
+                            <img src="../Img/Cellular_Therapy.jpg" alt="Spray on Skin Mechanism">
+                            <div class="figure-caption">Fig viii. Preparation and Application of Autologous Cell Suspension</div>
+                        </div>
+
+                        <p>
+                            As illustrated in <strong>Fig viii</strong>, the biopsy is subjected to rapid enzymatic digestion (using trypsin) to separate the epidermis from the dermis and break the tissue down into a liquid suspension of individual, living cells. This heterogenous suspension contains basal keratinocytes, fibroblasts, and melanocytes. The liquid is then sprayed directly onto a prepared wound bed or over a highly meshed autograft. 
+                        </p>
+                        <p>
+                            The mathematical expansion ratio of this technique is extraordinary. While traditional meshing can expand a graft up to 1:9, an autologous cell suspension can cover a wound area up to <strong>80 times larger</strong> than the original donor site (a 1:80 ratio). Once sprayed, the keratinocytes rapidly proliferate and coalesce, forming a confluent epidermal layer in a fraction of the time it would take for a standard wound to epithelialize, effectively bridging the gaps in widely meshed grafts and minimizing scarring.
+                        </p>
+
+                    </div>
+
+                    <div class="page-number">16</div>
+                </div>
+            </div>
+
+            <!-- PAGE 17 -->
+            <div class="page">
+                <div class="border-container">
+                    <div class="content-section">
+                        
+                        <p>
+                            Beyond epidermal suspensions, <strong>Mesenchymal Stem Cells (MSCs)</strong> offer a revolutionary avenue for complex thermal wounds. These multipotent cells are easily harvested from bone marrow or the patient's own adipose tissue (Adipose-Derived Stem Cells, or ADSCs).
+                        </p>
+
+                        <p>
+                            Unlike traditional grafts, stem cells act as biological conductors via <strong>paracrine signaling</strong>. Rather than differentiating directly into skin cells, MSCs release a concentrated payload of growth factors, cytokines, and exosomes. This biochemical delivery profoundly modulates the immune response, dampens hyper-inflammation, and actively recruits endothelial cells to forge new blood vessels (angiogenesis).
+                        </p>
+
+                        <!-- TABLE 5 -->
+                        <table class="academic-table">
+                            <thead>
+                                <tr>
+                                    <th>Therapeutic Modality</th>
+                                    <th>Biological Component</th>
+                                    <th>Mechanism of Action</th>
+                                    <th>Clinical Application</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Autologous Cell Suspension</strong> (e.g., RECELL®)</td>
+                                    <td>Non-cultured keratinocytes, melanocytes, and fibroblasts.</td>
+                                    <td>Rapid epithelialization via direct cellular proliferation over a wide surface area.</td>
+                                    <td>Second-degree burns; used in tandem with widely meshed grafts for major third-degree burns.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Adipose-Derived Stem Cells (ADSCs)</strong></td>
+                                    <td>Multipotent stem cells isolated from subcutaneous fat.</td>
+                                    <td>Paracrine signaling; secretes VEGF and TGF-β to promote angiogenesis and reduce fibrosis.</td>
+                                    <td>Radiation burns, chronic non-healing ulcers, and scar remodeling therapies.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cell-Free Exosome Therapy</strong></td>
+                                    <td>Nanovesicles secreted by stem cells containing mRNA and proteins.</td>
+                                    <td>Delivers regenerative genetic instructions without transferring living cells (avoids immune rejection).</td>
+                                    <td>Currently in advanced clinical trials for scarless wound healing and dermal regeneration.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>
+                            Integrating stem cells with bioengineered scaffolds is yielding unprecedented clinical results. By seeding an Acellular Dermal Matrix with ADSCs prior to implantation, surgeons can significantly accelerate neovascularization, drastically reducing the time required before an epidermal graft can be safely applied. 
+                        </p>
+                        <p>
+                            Furthermore, the horizon is shifting toward <strong>cell-free therapeutics</strong>. Harvesting only the exosomes secreted by stem cells delivers powerful regenerative benefits without the regulatory, storage, or immunogenic risks of transplanting living cells. This evolution from solid grafts to liquid suspensions, and now to cell-free therapeutics, illustrates the remarkable trajectory of modern wound care.
+                        </p>
+                        
+                    </div>
+
+                    <div class="page-number">17</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Cellular_Therapies.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

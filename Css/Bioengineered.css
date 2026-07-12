@@ -27,18 +27,18 @@ body {
     border-radius: 6px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: background-color 0.2s ease;
 }
 
 .action-btn.secondary {
     background-color: #4b5563;
 }
 
-.action-btn:hover {
-    background-color: #112240;
-}
-.action-btn.secondary:hover {
-    background-color: #374151;
+/* Wrapper for Multiple Pages */
+#pdf-content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
 }
 
 /* A4 Paper Dimensions */
@@ -48,31 +48,34 @@ body {
     height: 1120px;
     box-sizing: border-box;
     padding: 45px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
+    border-bottom: 1px dashed #ccc;
 }
 
-/* Premium Academic Double Border */
+.page:last-child {
+    border-bottom: none;
+}
+
+/* Premium Academic Double Border (UPDATED TO YOUR SPECS) */
 .border-container {
     border: 5px double #1a365d;
     width: 100%;
     height: 1030px;
     box-sizing: border-box;
-    /* REDUCED padding to give the text more room to breathe vertically */
-    padding: 30px 45px;
     padding: 25px 20px;
+    padding: 25px 5px;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 2;
 }
 
-/* Watermark */
+/* Watermark (UPDATED TO YOUR SPECS) */
 .border-container::before {
     content: "";
     position: absolute;
-    top: 45%;
+    top: 45%; /* Shifted up slightly */
     left: 50%;
     transform: translate(-50%, -50%);
     width: 320px;
@@ -81,81 +84,105 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: 0.06;
+    opacity: 0.07; /* Slightly darker per your request */
     z-index: -1;
 }
 
 /* Title Section */
 .title-section {
     text-align: center;
-    /* REDUCED margin so it doesn't push the text down too far */
     margin-bottom: 15px;
 }
 
-.title-section h1 {
-    font-size: 21px;
+h1 {
+    font-size: 24px;
     font-weight: 800;
     color: #1a365d;
     text-transform: uppercase;
-    letter-spacing: 2px;
     margin: 0;
+    letter-spacing: 1px;
 }
 
-/* Content Paragraphs - TIGHTENED to fit 6 paragraphs */
+/* Paragraph Formatting */
+.content-section {
+    flex-grow: 1;
+    padding: 0 15px; /* Adds a tiny bit of internal text margin since the border padding is smaller */
+}
+
 .content-section p {
-    font-size: 14.5px; /* Slightly smaller */
-    line-height: 1.45; /* Tighter line spacing so it doesn't overflow */
+    font-size: 15.5px;
+    line-height: 1.6;
     text-align: justify;
-    margin: 0 0 10px 0; /* Reduced paragraph gap */
-    color: #111827;
-}
-
-.content-section strong {
-    font-weight: 700;
+    margin: 0 0 15px 0;
     color: #000;
 }
 
-/* Signature Section */
-.signature-section {
-    align-self: flex-end;
-    margin-top: auto;
-    margin-bottom: 105px; /* Pulled up closer so it stays inside the border */
-    margin-right: 20px;
-    text-align: center;
+/* CENTERED FIGURE */
+.center-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
 }
 
-.signature-space {
-    height: 50px; /* Reduced the giant empty gap for the physical signature */
+.center-figure img {
+    width: 80%;
+    max-height: 250px;
+    object-fit: contain;
 }
 
-/* The physical signature line */
-.signature-line {
-    border-top: 1.5px solid #1a365d;
-    width: 240px;
-    margin: 0 auto 5px auto;
-}
-
-.signature-section p {
-    font-size: 14.5px;
-    margin: 0;
-    color: #374151;
-}
-
-.bold-text {
-    font-weight: 700;
-    color: #1a365d;
-    font-size: 15px !important;
-    text-transform: uppercase;
-}
-
-/* Page Number 'iii' */
-.page-number {
-    position: absolute;
-    bottom: 15px;
-    right: 25px;
-    font-size: 15px;
+.figure-caption {
+    margin-top: 8px;
+    font-size: 12.5px;
     font-weight: bold;
     color: #1a365d;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* SMALLER THEMED TABLE STYLING */
+.academic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    border: 2px solid #000;
+    margin: 15px 0;
+}
+
+.academic-table th,
+.academic-table td {
+    border: 1px solid #000;
+    padding: 8px 10px;
+    color: #000;
+}
+
+.academic-table th {
+    background-color: #e5d7b8;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+}
+
+.academic-table td {
+    text-align: left;
+    line-height: 1.4;
+}
+
+.academic-table td:nth-child(1) {
+    font-weight: bold;
+    text-align: center;
+    width: 20%;
+}
+
+/* Page Number */
+.page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
 }
 
 /* Print Rules */
@@ -167,8 +194,14 @@ body {
     .btn-container {
         display: none !important;
     }
-    .page {
+    #pdf-content {
         box-shadow: none;
-        margin: 0;
+    }
+    .page {
+        border-bottom: none;
+    }
+    .academic-table th,
+    .academic-table td {
+        border: 0.1px solid #000;
     }
 }

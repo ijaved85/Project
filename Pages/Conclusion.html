@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Conclusion</title>
+
+        <link rel="stylesheet" href="../Css/Conclusion.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div id="pdf-content">
+            
+            <!-- PAGE 31: CONCLUSION -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>CONCLUSION</h1>
+                    </div>
+
+                    <div class="content-section" style="margin-top: 30px;">
+                        <p>
+                            The management of severe thermal trauma has undergone a profound paradigm shift, transitioning from basic tissue transfer to advanced regenerative engineering. Historically, the clinical objective was purely survival—relying on traditional autografts, allografts, and xenografts to immediately halt fatal fluid loss and invasive sepsis. While foundational, these methodologies were inherently limited by donor site morbidity, severe immunological rejection, and debilitating scar contractures.
+                        </p>
+                        
+                        <p>
+                            Today, the integration of Acellular Dermal Matrices (ADMs), cellular therapies, and targeted nanotechnology has weaponized the body's own biological signaling pathways. By delivering concentrated payloads of growth factors and Adipose-Derived Stem Cells (ADSCs) directly into the wound bed, clinicians can actively reprogram hostile, chronic microenvironments to drive robust angiogenesis and functional tissue regeneration.
+                        </p>
+
+                        <p>
+                            Looking forward, the convergence of CRISPR gene-editing, stimuli-responsive smart biomaterials, and in situ 3D bioprinting promises to eliminate the final barriers of modern wound care. By moving toward universally compatible, immunologically silent organotypic skin constructs, the boundary between synthetic grafts and native tissue will permanently dissolve. 
+                        </p>
+
+                        <p>
+                            The ultimate goal of modern reconstructive burn surgery is no longer merely patient survival, but complete, scarless, and uncompromising anatomical restoration.
+                        </p>
+                    </div>
+
+                    <div class="page-number">31</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Conclusion.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Dermal Scaffolds and Matrices</title>
+
+        <link rel="stylesheet" href="../Css/Scaffolds.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div id="pdf-content">
+            
+            <!-- PAGE 14 -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>DERMAL SCAFFOLDS & MATRICES</h1>
+                    </div>
+
+                    <div class="content-section">
+                        <p>
+                            While cellular composite substitutes deliver living cells directly to a wound, another branch of tissue engineering focuses strictly on architectural framework. <strong>Acellular Dermal Matrices (ADMs)</strong> and synthetic scaffolds are biological constructs entirely devoid of living cells or immunogenic antigens. Instead, they provide a pristine, three-dimensional porous structure that acts as a regenerative template for the patient’s own cells to colonize.
+                        </p>
+                        
+                        <p>
+                            The clinical philosophy of ADMs relies on <em>in vivo</em> regeneration rather than <em>in vitro</em> construction. When a massive burn destroys the dermis, the body rapidly produces chaotic, cross-linked collagen bundles, resulting in severe hypertrophic scars. By implanting a dermal scaffold, surgeons provide native fibroblasts and endothelial cells with an organized extracellular matrix (ECM) to migrate along, forcing the cells to regenerate a pliable, functional "neodermis."
+                        </p>
+
+                        <!-- FIGURE 7 -->
+                        <div class="center-figure">
+                            <img src="../Img/Acellular_Matrix.jpg" alt="Mechanism of Acellular Dermal Matrices">
+                            <div class="figure-caption">Fig vii. Cellular Infiltration and Neovascularization of a Bilayer Dermal Scaffold</div>
+                        </div>
+
+                        <p>
+                            As depicted in <strong>Fig vii</strong>, the gold-standard mechanism is the two-layer dermal regeneration template (e.g., Integra). The bottom layer consists of a highly porous matrix of bovine tendon collagen and shark cartilage glycosaminoglycan. This combination mimics the natural dermal ECM, encouraging aggressive capillary infiltration and fibroblastic invasion. 
+                        </p>
+                        <p>
+                            The top layer of these scaffolds is a temporary, ultra-thin polysiloxane (silicone) sheet. This synthetic pseudo-epidermis serves a critical physiological role immediately post-excision by sealing the massive wound, preventing evaporative fluid loss, completely blocking bacterial contamination, and providing crucial mechanical protection while the underlying collagen matrix is actively vascularized.
+                        </p>
+
+                    </div>
+
+                    <div class="page-number">14</div>
+                </div>
+            </div>
+
+            <!-- PAGE 15 -->
+            <div class="page">
+                <div class="border-container">
+                    <div class="content-section">
+                        
+                        <p>
+                            The creation of allogeneic and xenogeneic ADMs relies on a complex bioengineering process known as <strong>decellularization</strong>. Donored tissue undergoes aggressive chemical processing using detergents, enzymes, and hypotonic washes. This strips away the epidermis, cell membranes, and nucleic acids to prevent an immune response, while carefully preserving the structural integrity of the native collagen and elastin fibers. 
+                        </p>
+
+                        <!-- TABLE 4 -->
+                        <table class="academic-table">
+                            <thead>
+                                <tr>
+                                    <th>Scaffold/Matrix Type</th>
+                                    <th>Biological Composition</th>
+                                    <th>Surgical Protocol</th>
+                                    <th>Primary Clinical Indication</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Integra® Template</strong></td>
+                                    <td>Bovine collagen and shark GAG with a silicone epidermal layer.</td>
+                                    <td><strong>Two-Stage:</strong> Wait 14-21 days for vascularization, remove silicone, and apply STSG.</td>
+                                    <td>Massive full-thickness burns, scar revisions, and complex traumatic soft tissue loss.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MatriDerm®</strong></td>
+                                    <td>Bovine dermis collagen integrated with an elastin matrix; highly porous structure.</td>
+                                    <td><strong>Single-Stage:</strong> Applied directly to the wound bed with an STSG layered on top.</td>
+                                    <td>Deep partial-thickness burns and reconstructive surgeries where immediate closure is possible.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AlloDerm® / Human ADM</strong></td>
+                                    <td>Decellularized human cadaveric dermis; perfectly retains native human ECM architecture.</td>
+                                    <td><strong>Implantable:</strong> Often used as a subcutaneous implant or sub-dermal support sling.</td>
+                                    <td>Breast reconstruction, abdominal wall repair, and deep cavity soft tissue filling.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>
+                            Clinical implementation of dermal templates typically requires a staged surgical approach. After excising the necrotic eschar down to viable fat or fascia, the scaffold is sutured to the wound bed. During the integration phase (Days 1–21), native macrophages slowly degrade the acellular matrix while host fibroblasts deposit new, organized human collagen in its place. 
+                        </p>
+                        <p>
+                            Once the matrix exhibits a peach or pale red color—indicating that successful capillary neovascularization has permeated the scaffold—the patient is returned to the operating room. The temporary silicone pseudo-epidermis is peeled away, and a highly expanded, ultra-thin autograft (epidermis only) is applied over the newly formed, vascularized neodermis to provide permanent epithelial closure. 
+                        </p>
+                        <p>
+                            While ADMs have revolutionized burn outcomes by eliminating severe scar contracture, they rely entirely on a sterile, highly vascularized wound bed for survival. The lack of living cellular elements means ADMs possess no inherent antimicrobial properties, rendering them highly susceptible to catastrophic failure in the presence of invasive wound infections.
+                        </p>
+                        
+                    </div>
+
+                    <div class="page-number">15</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Scaffolds_Matrices.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

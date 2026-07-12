@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Nanotechnology in Wound Care Delivery</title>
+
+        <link rel="stylesheet" href="../Css/Nanotech.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div id="pdf-content">
+            
+            <!-- PAGE 20 -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>NANOTECHNOLOGY IN WOUND CARE</h1>
+                    </div>
+
+                    <div class="content-section">
+                        <p>
+                            Traditional wound care therapies, including topically applied antibiotics and recombinant growth factors, frequently fail due to rapid degradation by proteolytic enzymes within the hostile wound microenvironment. Nanotechnology has emerged as a transformative solution to this delivery crisis. By engineering materials at the nanoscale (1 to 100 nanometers), scientists can encapsulate fragile therapeutic agents, protecting them from enzymatic destruction while ensuring deep, targeted tissue penetration.
+                        </p>
+
+                        <!-- FIGURE 10 -->
+                        <div class="center-figure">
+                            <img src="../Img/Nanotech_Delivery.jpg" alt="Nanoparticle Delivery Mechanism">
+                            <div class="figure-caption">Fig x. Mechanism of Nanoparticle-Mediated Targeted Delivery in Wound Beds</div>
+                        </div>
+
+                        <p>
+                            As illustrated in <strong>Fig x</strong>, nanocarriers such as liposomes and polymeric nanoparticles act as protective molecular trojan horses. Because their microscopic size allows them to easily bypass the stratum corneum and cellular membranes, they can deliver payloads directly into the cytoplasm of target cells. Furthermore, the surface of these nanoparticles can be functionalized with specific ligands, ensuring they only bind to and release their payload at the site of active inflammation, thereby minimizing systemic toxicity and maximizing localized therapeutic efficacy.
+                        </p>
+                    </div>
+
+                    <div class="page-number">20</div>
+                </div>
+            </div>
+
+            <!-- PAGE 21 -->
+            <div class="page">
+                <div class="border-container">
+                    <div class="content-section">
+                        
+                        <p>
+                            Beyond protecting growth factors, nanotechnology has revolutionized the antimicrobial management of severe burn wounds. The rise of multidrug-resistant pathogens has rendered many traditional antibiotics obsolete. In response, metallic nanosystems, particularly silver and zinc oxide nanoparticles, have been heavily integrated into modern hydrogel dressings. The table below outlines the primary nanocarriers currently utilized in advanced wound care delivery.
+                        </p>
+
+                        <!-- TABLE 7 -->
+                        <table class="academic-table">
+                            <thead>
+                                <tr>
+                                    <th>Nanocarrier Type</th>
+                                    <th>Biological Composition</th>
+                                    <th>Mechanism of Action</th>
+                                    <th>Clinical Application</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Liposomes</strong></td>
+                                    <td>Spherical phospholipid bilayer vesicles.</td>
+                                    <td>Fuses directly with cell membranes to deliver both hydrophilic and hydrophobic drugs.</td>
+                                    <td>Delivery of fragile growth factors (VEGF, EGF) to ischemic diabetic ulcers.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Silver Nanoparticles (AgNPs)</strong></td>
+                                    <td>Synthesized metallic silver engineered at the nanoscale.</td>
+                                    <td>Punctures bacterial cell walls and binds to pathogenic DNA, preventing replication.</td>
+                                    <td>Highly potent antimicrobial dressings for infected third-degree burns.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Polymeric Nanoparticles</strong></td>
+                                    <td>Biodegradable polymers (e.g., PLGA, Chitosan).</td>
+                                    <td>Undergoes slow, sustained matrix degradation for controlled release over weeks.</td>
+                                    <td>Long-term, sustained delivery of anti-inflammatory cytokines to chronic wounds.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>
+                            The integration of these advanced nanocarriers into bioengineered dermal scaffolds represents the pinnacle of current reconstructive medicine. By combining the physical structural support of an Acellular Dermal Matrix with the targeted, sustained biochemical delivery of nanoparticle-encapsulated growth factors and antimicrobials, clinicians can effectively program the wound microenvironment. This bio-instructive approach significantly accelerates neovascularization, drastically reduces the risk of invasive sepsis, and paves the way for true, scarless tissue regeneration.
+                        </p>
+                        
+                    </div>
+
+                    <div class="page-number">21</div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Nanotechnology.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>
