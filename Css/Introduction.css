@@ -1,0 +1,144 @@
+/* Base Screen Styling */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 30px 0;
+}
+
+/* Navigation & Download Buttons */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn.secondary {
+    background-color: #4b5563;
+}
+
+/* Wrapper for Multiple Pages */
+#pdf-content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+/* A4 Paper Dimensions (Strictly Locked) */
+.page {
+    background-color: white;
+    width: 794px;
+    height: 1120px;
+    box-sizing: border-box;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px dashed #ccc;
+}
+
+.page:last-child {
+    border-bottom: none;
+}
+
+/* Premium Academic Double Border */
+.border-container {
+    border: 5px double #1a365d;
+    width: 100%;
+    height: 1030px;
+    box-sizing: border-box;
+    /* REDUCED padding from 50px to 35px to give text more vertical room inside the box */
+    padding: 35px 50px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.06;
+    z-index: -1;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-bottom: 15px; /* REDUCED to pull text up */
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a365d;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Introduction Paragraph Formatting - ADJUSTED TO FIX OVERFLOW */
+.content-section {
+    flex-grow: 1;
+}
+
+.content-section p {
+    font-size: 16px; /* Scaled down slightly */
+    line-height: 1.8; /* Tightened from 2.1 to stop the bottom spill */
+    text-align: justify;
+    margin: 0 0 14px 0; /* Reduced paragraph gap */
+    color: #000;
+}
+
+/* Page Number Formatting */
+.page-number {
+    position: absolute;
+    bottom: 15px;
+    right: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Print Rules */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .btn-container {
+        display: none !important;
+    }
+    #pdf-content {
+        box-shadow: none;
+    }
+    .page {
+        border-bottom: none;
+    }
+}

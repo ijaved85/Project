@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Abstract Page</title>
+
+        <link rel="stylesheet" href="../Css/Abstract.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navigation & Download Buttons -->
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                
+                <div class="title-section">
+                    <h1>ABSTRACT</h1>
+                </div>
+
+                <div class="content-section">
+                    <p>
+                        This review project explores the advancements in skin grafting techniques specifically tailored for the management of severe burns and chronic wounds. Traditional wound care often falls short in addressing deep-tissue injuries, leading to prolonged healing times, high infection rates, and significant patient morbidity. The report systematically evaluates the evolution of skin grafting from conventional autografts and allografts to state-of-the-art bioengineered skin substitutes, dermal scaffolds, and cellular technologies. Each therapeutic approach is assessed based on its clinical efficacy, biocompatibility, advantages, and limitations in medical applications. The primary objective is to highlight how modern grafting innovations improve wound closure rates, enhance tissue regeneration, and reduce overall patient recovery time. Key benefits discussed include optimized epidermal barrier function, mitigation of immune rejection, and improved cosmetic and functional outcomes. Furthermore, the report addresses current clinical and industrial challenges, such as the high cost of bioengineered tissues, difficulties in achieving rapid vascularization in synthetic grafts, and complex manufacturing processes, emphasizing the critical need for continued research to overcome these barriers. By synthesizing existing literature, this project concludes that transitioning from traditional methods to advanced, biomaterial-driven skin delivery systems significantly elevates therapeutic success, paving the way for personalized regenerative medicine in dermatological care.
+                    </p>
+                </div>
+
+                <!-- Page Number -->
+                <div class="page-number">1</div>
+
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Abstract_Page.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

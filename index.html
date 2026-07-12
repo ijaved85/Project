@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project Data Entry</title>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div class="form-container">
+            <h2>Project Metadata</h2>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="regNumber">Registration Number</label>
+                    <input type="text" id="regNumber" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="rollNumber">University Roll Number</label>
+                    <input type="text" id="rollNumber" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Project Topic</label>
+                    <input type="text" id="topic" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="subDate">Submission Date</label>
+                    <input type="date" id="subDate" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="supervisor">Project Supervisor</label>
+                    <select id="supervisor" required>
+                        <option value="" disabled selected></option>
+                        <option
+                            value="Papan Garai"
+                            data-title="Assistant Professor"
+                        >
+                            Papan Garai
+                        </option>
+                        <option
+                            value="Mosatfizur Rahman"
+                            data-title="Assistant Professor"
+                        >
+                            Mosatfizur Rahman
+                        </option>
+                        <option
+                            value="Samar Dule"
+                            data-title="Assistant Professor"
+                        >
+                            Samar Dule
+                        </option>
+                        <option
+                            value="Aniket Gupta"
+                            data-title="Assistant Professor"
+                        >
+                            Aniket Gupta
+                        </option>
+                        <option
+                            value="Mamdoohul Haque"
+                            data-title="Assistant Professor"
+                        >
+                            Mamdoohul Haque
+                        </option>
+                        <option
+                            value="Asad Arzoo"
+                            data-title="Assistant Professor"
+                        >
+                            Mosatfizur Rahman
+                        </option>
+                        <option
+                            value="Dr.Subarna Ganguli"
+                            data-title="Principal"
+                        >
+                            Dr. Subarna Ganguli
+                        </option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="button-group">
+                <!-- <button
+                    type="button"
+                    onclick="goToPage('Pages/FrontPage.html')"
+                >
+                    Front Page
+                </button>
+                   <button
+                    type="button"
+                    onclick="goToPage('Pages/Certificate.html')"
+                >
+                    Certificate
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/Declaration.html')"
+                >
+                    Declaration
+                </button>
+                  <button
+                    type="button"
+                    onclick="goToPage('Pages/Acknowledgement.html')"
+                >
+                    Acknowledgement
+                </button>
+                
+                
+                
+                -->
+                <button type="button" onclick="goToPage('Pages/Trying.html')">
+                    Front Page
+                </button>
+
+                <button type="button" onclick="goToPage('Pages/Certi.html')">
+                    Certificate
+                </button>
+
+                <button type="button" onclick="goToPage('Pages/Dec.html')">
+                    Declaration
+                </button>
+
+                <button type="button" onclick="goToPage('Pages/Ack.html')">
+                    Acknowledgement
+                </button>
+                <button type="button" onclick="goToPage('Pages/Preface.html')">
+                    Preface
+                </button>
+                <button type="button" onclick="goToPage('Pages/Content.html')">
+                    Content
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/ListFigures.html')"
+                >
+                    List Of Figure
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/ListTables.html')"
+                >
+                    List Of Tables
+                </button>
+
+                <button type="button" onclick="goToPage('Pages/Abstract.html')">
+                    Abstract
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/Introduction.html')"
+                >
+                    Introduction
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/Physiology.html')"
+                >
+                    Physiology
+                </button>
+            </div>
+        </div>
+
+        <script>
+            const formFields = [
+                "studentName",
+                "regNumber",
+                "rollNumber",
+                "topic",
+                "subDate",
+                "supervisor"
+            ];
+
+            window.addEventListener("DOMContentLoaded", () => {
+                formFields.forEach(fieldId => {
+                    const el = document.getElementById(fieldId);
+                    const savedValue = localStorage.getItem(fieldId);
+                    if (savedValue && el) {
+                        el.value = savedValue;
+                    }
+                });
+            });
+
+            const saveToLocal = () => {
+                formFields.forEach(fieldId => {
+                    const el = document.getElementById(fieldId);
+                    if (el) {
+                        localStorage.setItem(fieldId, el.value);
+                    }
+                });
+
+                const supSelect = document.getElementById("supervisor");
+                if (supSelect.selectedIndex > 0) {
+                    const selectedOption =
+                        supSelect.options[supSelect.selectedIndex];
+                    localStorage.setItem(
+                        "supervisorTitle",
+                        selectedOption.getAttribute("data-title")
+                    );
+                }
+            };
+
+            formFields.forEach(fieldId => {
+                const el = document.getElementById(fieldId);
+                if (el) {
+                    el.addEventListener("input", saveToLocal);
+                    el.addEventListener("change", saveToLocal);
+                }
+            });
+
+            function goToPage(url) {
+                const form = document.getElementById("projectForm");
+
+                if (form.reportValidity()) {
+                    saveToLocal();
+                    window.location.href = url;
+                }
+            }
+        </script>
+    </body>
+</html>

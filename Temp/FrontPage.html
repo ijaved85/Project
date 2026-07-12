@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Project Front Page</title>
+
+        <link rel="stylesheet" href="../Css/FrontPage.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div
+            id="btn-container"
+            style="display: flex; gap: 10px; margin-bottom: 25px"
+        >
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="download-btn"
+                style="background-color: #555; margin-bottom: 0"
+            >
+                Back to Form
+            </button>
+            <button
+                id="downloadBtn"
+                class="download-btn"
+                style="margin-bottom: 0"
+            >
+                Download PDF
+            </button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="section title-section">
+                    <h1 id="front-topic"></h1>
+                    <p></p>
+                    <p>Degree of</p>
+                    <p class="highlight">BACHELOR OF PHARMACY</p>
+                    <p>Under</p>
+                    <p class="highlight">
+                        Aryabhatta Knowledge University (AKU)
+                    </p>
+                </div>
+
+                <div class="section logo-section">
+                    <img
+                        src="../Img/AKULogo.png"
+                        alt="AKU Logo"
+                        class="logo-img"
+                    />
+                </div>
+
+                <div class="section student-section blue-text">
+                    <p>BY</p>
+                    <p class="highlight" id="front-student-name">
+                        [STUDENT NAME]
+                    </p>
+                    <p>
+                        B. Pharm 4<sup>th</sup> Year, 8<sup>th</sup> Semester,
+                    </p>
+                    <p>Session: 2021-2025</p>
+                    <p>
+                        Registration No.
+                        <span class="highlight" id="front-reg-no"
+                            >[REG NO]</span
+                        >
+                    </p>
+                    <p>
+                        University Roll No.
+                        <span class="highlight" id="front-roll-no"
+                            >[ROLL NO]</span
+                        >
+                    </p>
+                </div>
+
+                <div class="section supervisor-section">
+                    <p>Under the supervision of</p>
+                    <p class="highlight" id="front-supervisor-name">
+                        [Supervisor Name]
+                    </p>
+                    <p>
+                        (<span id="front-supervisor-title"
+                            >Assistant Professor</span
+                        >)
+                    </p>
+                    <p>Department of Pharmaceutics</p>
+                </div>
+
+                <div class="section footer-section">
+                    <div class="institute-name">
+                        RADIANT INSTITUTE OF PHARMACEUTICAL SCIENCES
+                    </div>
+                    <p class="address">
+                        Fatma Nagar, Salkitengarmari, Kishanganj, BelwaKasipur,
+                        Bihar 855107
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Topic to uppercase
+                const topicRaw = localStorage.getItem("topic") || "[TOPIC]";
+                document.getElementById("front-topic").innerText =
+                    `A REVIEW ON ${topicRaw.toUpperCase()}`;
+
+                // Student name to uppercase
+                const nameRaw =
+                    localStorage.getItem("studentName") || "[STUDENT NAME]";
+                document.getElementById("front-student-name").innerText =
+                    nameRaw.toUpperCase();
+
+                document.getElementById("front-reg-no").innerText =
+                    localStorage.getItem("regNumber") || "[REG NO]";
+                document.getElementById("front-roll-no").innerText =
+                    localStorage.getItem("rollNumber") || "[ROLL NO]";
+
+                document.getElementById("front-supervisor-name").innerText =
+                    localStorage.getItem("supervisor") || "[Supervisor Name]";
+                document.getElementById("front-supervisor-title").innerText =
+                    localStorage.getItem("supervisorTitle") ||
+                    "Assistant Professor";
+            });
+
+            document
+                .getElementById("downloadBtn")
+                .addEventListener("click", function () {
+                    const btnContainer =
+                        document.getElementById("btn-container");
+                    btnContainer.style.display = "none";
+
+                    const element = document.getElementById("pdf-content");
+                    const opt = {
+                        margin: 0,
+                        filename: "Project_Frontpage.pdf",
+                        image: { type: "png" },
+                        html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                        jsPDF: {
+                            unit: "mm",
+                            format: "a4",
+                            orientation: "portrait"
+                        }
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(element)
+                        .save()
+                        .then(() => {
+                            btnContainer.style.display = "flex";
+                        });
+                });
+        </script>
+    </body>
+</html>

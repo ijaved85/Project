@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Certificate Page</title>
+
+        <link rel="stylesheet" href="../Css/Certi.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="title-section">
+                    <h1>CERTIFICATE</h1>
+                </div>
+
+                <div class="paragraph-section">
+                    <p>
+                        This is to certify that the dissertation incorporated in
+                        this final project report entitled
+                        <strong>“<span id="cert-topic">[TOPIC]</span>”</strong>
+                        by
+                        <strong id="cert-student-name">[STUDENT NAME]</strong>
+                        in partial fulfillment of the requirement for the degree
+                        of Bachelor of Pharmacy under
+                        <strong>Aryabhatta Knowledge University</strong>, is a
+                        record of his/her original work under the supervision of
+                        <strong id="cert-supervisor-name"
+                            >[Supervisor Name]</strong
+                        >. Neither his/her project report nor any part of it has
+                        been submitted for any degree or any award anywhere
+                        before.
+                    </p>
+                </div>
+
+                <div class="signatures-row">
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">HEAD OF THE INSTITUTION</p>
+                        <p>Prof. (Dr.) Subarna Ganguli</p>
+                        <p>Principal</p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">PROJECT SUPERVISOR</p>
+                        <p id="cert-sig-name">[Supervisor Name]</p>
+                        <p>
+                            <span id="cert-sig-title">[Supervisor Title]</span>
+                        </p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+                </div>
+
+                <div class="signatures-row bottom-row">
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">Controller of Examination</p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+                </div>
+
+                <div class="page-number">i</div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const topicRaw = localStorage.getItem("topic") || "[Topic]";
+                document.getElementById("cert-topic").innerText =
+                    topicRaw.toUpperCase();
+
+                const nameRaw =
+                    localStorage.getItem("studentName") || "[Student Name]";
+                document.getElementById("cert-student-name").innerText =
+                    nameRaw.toUpperCase();
+
+                const supervisor =
+                    localStorage.getItem("supervisor") || "[Supervisor Name]";
+                document.getElementById("cert-supervisor-name").innerText =
+                    supervisor;
+                document.getElementById("cert-sig-name").innerText = supervisor;
+
+                let supervisorTitle =
+                    localStorage.getItem("supervisorTitle") ||
+                    "Assistant Professor";
+                // Clean up formatting for the title underneath the signature
+                if (supervisorTitle.includes(" of")) {
+                    supervisorTitle = supervisorTitle.replace(" of", "");
+                }
+                document.getElementById("cert-sig-title").innerText =
+                    supervisorTitle;
+            });
+
+            document
+                .getElementById("downloadBtn")
+                .addEventListener("click", function () {
+                    const btnContainer =
+                        document.getElementById("btn-container");
+                    btnContainer.style.display = "none";
+
+                    const element = document.getElementById("pdf-content");
+                    const opt = {
+                        margin: 0,
+                        filename: "Certificate_Page.pdf",
+                        image: { type: "png" },
+                        html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                        jsPDF: {
+                            unit: "mm",
+                            format: "a4",
+                            orientation: "portrait"
+                        }
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(element)
+                        .save()
+                        .then(() => {
+                            btnContainer.style.display = "flex";
+                        });
+                });
+        </script>
+    </body>
+</html>

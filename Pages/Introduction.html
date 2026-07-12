@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Introduction Page</title>
+
+        <link rel="stylesheet" href="../Css/Introduction.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navigation & Download Buttons -->
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <!-- Single wrapper holding multiple pages -->
+        <div id="pdf-content">
+            
+            <!-- PAGE 1 OF INTRODUCTION -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="title-section">
+                        <h1>INTRODUCTION</h1>
+                    </div>
+
+                    <div class="content-section">
+                        <p>
+                            The skin, being the largest organ of the human body, serves as a vital and complex barrier that protects internal tissues from mechanical trauma, microbial invasion, ultraviolet radiation, and extreme temperature fluctuations. Beyond its protective role, the integumentary system is crucial for thermoregulation, sensory detection, and the prevention of excessive fluid loss. When this barrier is significantly compromised by severe acute trauma, such as deep thermal or chemical burns, or by persistent pathophysiological conditions leading to chronic wounds, the body is exposed to life-threatening risks including severe dehydration, systemic infection, and hypothermia.
+                        </p>
+                        <p>
+                            Burn injuries represent a major global public health crisis, characterized by the destruction of epidermal and dermal layers resulting in massive tissue necrosis. Severe burns trigger a profound systemic inflammatory response, hypermetabolism, and significant immunosuppression, rendering the rapid closure of the wound an urgent clinical priority. If the wound remains open for prolonged periods, the risk of sepsis—a leading cause of mortality in burn victims—increases exponentially.
+                        </p>
+                        <p>
+                            Similarly, chronic wounds—such as diabetic foot ulcers, venous leg ulcers, and pressure sores—pose an equally daunting clinical challenge. Unlike acute wounds that follow a predictable and timely healing trajectory, chronic wounds become stalled in the inflammatory phase. They are characterized by a highly proteolytic microenvironment, persistent bacterial colonization, and an inability of the native cells to proliferate and reconstruct the dermal matrix. For both severe burns and non-healing chronic wounds, the body's natural regenerative capabilities are entirely overwhelmed, making medical intervention in the form of skin replacement therapy absolutely essential for survival and recovery.
+                        </p>
+                    </div>
+
+                    <!-- Page Number (Matches TOC) -->
+                    <div class="page-number">2</div>
+
+                </div>
+            </div>
+
+            <!-- PAGE 2 OF INTRODUCTION -->
+            <div class="page">
+                <div class="border-container">
+                    
+                    <div class="content-section">
+                        <p>
+                            Historically, the gold standard for treating extensive skin loss has been the application of traditional skin grafts. Autografts, which involve transplanting the patient's own healthy skin from a donor site to the wound bed, remain the most reliable method for permanent wound closure. However, in patients with severe burns covering a large percentage of their total body surface area (TBSA), the availability of healthy donor sites is severely limited. This limitation often necessitates the use of allografts (skin from human cadavers) or xenografts (skin from animal sources, typically porcine) as temporary biological dressings. While these alternatives provide crucial temporary coverage, they are eventually rejected by the patient’s immune system and do not facilitate permanent regeneration.
+                        </p>
+                        <p>
+                            To overcome the inherent limitations of traditional grafting, modern biomedical research has pivoted toward the development of advanced skin grafting techniques and tissue-engineered skin substitutes. The evolution of regenerative medicine has introduced sophisticated bioengineered constructs that combine biodegradable scaffolds, extracellular matrix (ECM) proteins, and cellular therapies. These novel delivery systems not only aim to rapidly close the wound but also actively interact with the wound microenvironment to promote angiogenesis, reduce scarring, and restore normal skin function.
+                        </p>
+                        <p>
+                            This review project critically explores the transition from conventional grafting methodologies to advanced therapeutic delivery systems. It systematically evaluates the role of bioengineered dermal matrices, stem cell therapies, and nanotechnology in overcoming current clinical challenges. By analyzing the current literature, this report aims to highlight how the integration of advanced biomaterials and pharmaceutical science is revolutionizing the management of burns and chronic wounds, ultimately improving survival rates and enhancing the long-term quality of life for patients worldwide.
+                        </p>
+                    </div>
+
+                    <!-- Page Number (Matches TOC) -->
+                    <div class="page-number">3</div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Introduction_Pages.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

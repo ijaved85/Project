@@ -1,0 +1,150 @@
+/* ========================================== */
+/* --- LOCKED BASE TEMPLATE START --- */
+/* ========================================== */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif; 
+    margin: 0;
+    padding: 30px 0;
+}
+
+.download-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1f497d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.page {
+    background-color: white;
+    width: 794px;   
+    height: 1120px; 
+    box-sizing: border-box;
+    padding: 56px;  
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.border-container {
+    border: 2px solid #000; 
+    width: 100%;
+    height: 1008px;
+    box-sizing: border-box;
+    padding: 50px 45px; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Locked Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 45%;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.07; 
+    z-index: -1;
+}
+
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .download-btn {
+        display: none !important;
+    }
+    .page {
+        box-shadow: none;
+        margin: 0;
+    }
+}
+/* ========================================== */
+/* --- LOCKED BASE TEMPLATE END --- */
+/* ========================================== */
+
+/* --- ACKNOWLEDGEMENT PAGE SPECIFIC STYLES --- */
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-bottom: 25px; 
+    margin-top: 10px;
+}
+
+.title-section h1 {
+    font-size: 22px; /* Increased significantly to stand out from the body text */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Content Paragraphs */
+.content-section p {
+    font-size: 14.5px; 
+    line-height: 1.5; 
+    text-align: justify; 
+    margin: 0 0 10px 0; 
+}
+
+.content-section strong {
+    font-weight: bold;
+}
+
+/* Signature Section */
+.signature-section {
+    align-self: flex-end; 
+    margin-top: auto; 
+    margin-bottom: 25px;
+    margin-right: 40px;
+    text-align: center;
+}
+
+.signature-space {
+    height: 90px; 
+}
+
+/* The missing physical signature line */
+.signature-line {
+    border-top: 1.5px solid #000;
+    width: 220px; /* Wide enough for your signature */
+    margin: 0 auto 5px auto; /* Centers the line above your name with a 5px gap below it */
+}
+
+.signature-section p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+/* Page Number 'iii' */
+.page-number {
+    position: absolute;
+    bottom: 12px; 
+    right: 18px;  
+    font-size: 12px; 
+    font-weight: normal; 
+}

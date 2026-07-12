@@ -1,0 +1,165 @@
+/* Base Screen Styling */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Strict Times New Roman to match the printed image */
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 30px 0;
+}
+
+/* Download Button */
+.download-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1f497d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* A4 Paper Dimensions */
+.page {
+    background-color: white;
+    width: 794px;
+    height: 1120px;
+    box-sizing: border-box;
+    padding: 56px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Inner Frame / Border */
+.border-container {
+    border: 1.5px solid #000; /* Slightly thinner border to match image */
+    width: 100%;
+    height: 1008px;
+    box-sizing: border-box;
+    padding: 60px 45px; /* Tuned padding to push text inwards */
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 45%;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.07;
+    z-index: -1;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-bottom: 45px; /* Creates the big gap seen in the image */
+    margin-top: 10px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Certificate Paragraph Formatting */
+.paragraph-section {
+    margin-bottom: 120px;
+}
+
+.paragraph-section p {
+    font-size: 16px;
+    line-height: 2; /* True double-spacing for the academic look */
+    text-align: justify;
+    margin: 0;
+}
+
+/* Signature Area Layout */
+.signatures-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bottom-row {
+    margin-top: auto;
+}
+
+/* Individual Signature Blocks */
+.signature-block {
+    width: 48%;
+    text-align: left;
+}
+
+/* The right signature is styled slightly differently in your image */
+.right-align-block {
+    padding-left: 20px; /* Indents it a bit to match the visual spacing */
+}
+
+.bottom-sig {
+    margin-bottom: 10px; /* Lifts the bottom left signature slightly above the border */
+}
+
+/* The Dotted Line for Signatures */
+.sign-line {
+    border-top: 2px dotted #000;
+    width: 250px;
+    margin-bottom: 8px;
+    margin-top: 90px; /* Massive space above the line for pen signatures/stamps */
+}
+
+/* Signature Text Formatting */
+.signature-block p {
+    font-size: 14px; /* Scaled down slightly relative to body text */
+    margin: 4px 0;
+    line-height: 1.2;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+/* Page Number 'i' - Now absolutely positioned and pushed further down */
+.page-number {
+    position: absolute;
+    bottom: 15px; /* Shoved much closer to the bottom border line */
+    right: 20px; /* Pushed closer to the right border line */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Print Rules */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .download-btn {
+        display: none !important;
+    }
+    .page {
+        box-shadow: none;
+        margin: 0;
+    }
+}

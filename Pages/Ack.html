@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Acknowledgement Page</title>
+
+        <link rel="stylesheet" href="../Css/Ack.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <!-- Navigation & Download Buttons -->
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <!-- The A4 Page Container -->
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <!-- Title -->
+                <div class="title-section">
+                    <h1>ACKNOWLEDGEMENT</h1>
+                </div>
+
+                <!-- Content Paragraphs -->
+                <div class="content-section">
+                    <p>
+                        Words are very poor comforters to express the deep depth
+                        of gratitude which one feels in one's corner of the
+                        heart when one is helped to achieve the ultimate goal,
+                        in this boundless and endless field of research work,
+                        but since there is no other way which can be better to
+                        express one's feelings of respect and gratitude than
+                        this, I wish to take opportunity to thank the following
+                        who have assisted the completion of this project.
+                    </p>
+                    <p>
+                        Firstly, I take this opportunity to express my heartfelt
+                        gratitude and indebtedness to my respected supervisor
+                        <strong id="ack-supervisor-name"
+                            >[Supervisor Name]</strong
+                        >,
+                        <span id="ack-supervisor-title">[Supervisor Title]</span
+                        >, Department of Pharmaceutics,
+                        <strong
+                            >Radiant Institute of Pharmaceutical
+                            Sciences</strong
+                        >
+                        who constantly motivated, supported, encouraged and
+                        guided me. Their invaluable guidance and continuous help
+                        in every aspect enabled me to complete my thesis and
+                        without their cooperation I would not have presented
+                        this dissertation successfully. I am highly thankful, to
+                        the <strong>Management</strong> of
+                        <strong
+                            >Radiant Institute of Pharmaceutical
+                            Sciences</strong
+                        >
+                        for providing all facility and infrastructure during B.
+                        Pharm academic programme.
+                    </p>
+                    <p>
+                        I take my deep sense of gratitude and reverence to
+                        <strong>Dr. Subarna Ganguli</strong> Principal of the
+                        <strong
+                            >Pharmaceutical Chemistry, Radiant Institute of
+                            Pharmaceutical Sciences</strong
+                        >
+                        for providing me the requisite opportunities and
+                        facilities.
+                    </p>
+                    <p>
+                        I further avail this opportunity and profound privilege
+                        to optimize my deepest sense of gratitude to all faculty
+                        members, technical staffs and non-technical staffs of
+                        Department of
+                        <strong
+                            >Pharmacy and Radiant Institute of Pharmaceutical
+                            Sciences</strong
+                        >.
+                    </p>
+                    <p>
+                        I would like to thank my batchmates for their Moral
+                        support, assistance and enthusiasm throughout the entire
+                        session which made my stay in this institute a truly
+                        memorable and worth remembering. Last but not the least
+                        I would like to thank my parents for their love, Moral
+                        support and appreciation whenever I needed.
+                    </p>
+                    <p>
+                        I will be highly glad and indebted forever to all the
+                        people for their generosity and kindness. I also express
+                        my sincere apologies that I could not mention everyone
+                        personally one by one.
+                    </p>
+                </div>
+
+                <!-- Signature Section (Bottom Right) -->
+                <div class="signature-section">
+                    <div class="signature-space"></div>
+                    <div class="signature-line"></div>
+                    <p class="bold-text">
+                        Name: <span id="ack-student-name">[STUDENT NAME]</span>
+                    </p>
+                </div>
+
+                <!-- Page Number -->
+                <div class="page-number">iii</div>
+            </div>
+        </div>
+
+        <!-- Dynamic Data Population Script -->
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Fetch from LocalStorage
+                const studentName =
+                    localStorage.getItem("studentName") || "[STUDENT NAME]";
+                const supervisorName =
+                    localStorage.getItem("supervisor") || "[Supervisor Name]";
+                let supervisorTitle =
+                    localStorage.getItem("supervisorTitle") ||
+                    "Assistant Professor of";
+
+                // Format title (e.g. converting "Principal of" to "Principal")
+                if (supervisorTitle.includes(" of")) {
+                    supervisorTitle = supervisorTitle.replace(" of", "");
+                }
+
+                // Inject into HTML
+                document.getElementById("ack-student-name").innerText =
+                    studentName.toUpperCase();
+                document.getElementById("ack-supervisor-name").innerText =
+                    supervisorName;
+                document.getElementById("ack-supervisor-title").innerText =
+                    supervisorTitle;
+            });
+
+            // PDF Download Script
+            document
+                .getElementById("downloadBtn")
+                .addEventListener("click", function () {
+                    const btnContainer =
+                        document.getElementById("btn-container");
+                    btnContainer.style.display = "none";
+
+                    const element = document.getElementById("pdf-content");
+                    const opt = {
+                        margin: 0,
+                        filename: "Acknowledgement_Page.pdf",
+                        image: { type: "png" },
+                        html2canvas: { scale: 3, useCORS: true, scrollY: 0 },
+                        jsPDF: {
+                            unit: "mm",
+                            format: "a4",
+                            orientation: "portrait"
+                        }
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(element)
+                        .save()
+                        .then(() => {
+                            btnContainer.style.display = "flex";
+                        });
+                });
+        </script>
+    </body>
+</html>

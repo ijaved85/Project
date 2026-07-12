@@ -1,0 +1,184 @@
+/* Base Screen Styling */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 30px 0;
+}
+
+/* Navigation & Download Buttons (Matched to Front Page) */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s ease;
+}
+
+.action-btn.secondary {
+    background-color: #4b5563;
+}
+
+.action-btn:hover {
+    background-color: #112240;
+}
+.action-btn.secondary:hover {
+    background-color: #374151;
+}
+
+/* A4 Paper Dimensions (Strictly Locked) */
+.page {
+    background-color: white;
+    width: 794px;
+    height: 1120px;
+    box-sizing: border-box;
+    padding: 45px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Premium Academic Double Border (Synced with Front Page) */
+.border-container {
+    border: 5px double #1a365d;
+    width: 100%;
+    height: 1030px;
+    box-sizing: border-box;
+    padding: 60px 50px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.06;
+    z-index: -1;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a365d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Certificate Paragraph Formatting */
+.paragraph-section {
+    margin-bottom: 90px;
+}
+
+.paragraph-section p {
+    font-size: 17px;
+    line-height: 2.05; /* Spacious academic line-height */
+    text-align: justify;
+    margin: 0;
+    color: #111827;
+}
+
+.paragraph-section strong {
+    font-size: 16px;
+    color: #000;
+}
+
+/* Signature Area Layout */
+.signatures-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.bottom-row {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+/* Individual Signature Blocks */
+.signature-block {
+    width: 45%;
+    text-align: center; /* Centered text under the signature line looks more official */
+}
+
+/* The Signature Line */
+.sign-line {
+    border-top: 1.5px solid #1a365d; /* Solid navy line matching the theme */
+    width: 85%;
+    margin: 0 auto 12px auto;
+}
+
+/* Signature Text Formatting */
+.signature-block p {
+    font-size: 15px;
+    margin: 5px 0;
+    line-height: 1.3;
+    color: #374151;
+}
+
+.bold-text {
+    font-weight: 700;
+    color: #1a365d;
+    font-size: 15.5px !important;
+    text-transform: uppercase;
+}
+
+/* Page Number 'i' */
+.page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a365d;
+}
+
+/* Print Rules */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .btn-container {
+        display: none !important;
+    }
+    .page {
+        box-shadow: none;
+        margin: 0;
+    }
+}

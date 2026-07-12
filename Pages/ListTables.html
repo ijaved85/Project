@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>List of Tables Page</title>
+
+        <link rel="stylesheet" href="../Css/ListTables.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                
+                <div class="title-section">
+                    <h1>LIST OF TABLES</h1>
+                </div>
+
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Table Name</th>
+                            <th>Page No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Classification of Burn Injuries and Recommended Treatments</td><td>04</td></tr>
+                        <tr><td>2</td><td>Comparison of Autografts, Allografts, and Xenografts</td><td>08</td></tr>
+                        <tr><td>3</td><td>Commercially Available Bioengineered Skin Substitutes</td><td>12</td></tr>
+                        <tr><td>4</td><td>Biomaterials Used in Dermal Scaffolds</td><td>15</td></tr>
+                        <tr><td>5</td><td>Types of Stem Cells Utilized in Skin Regeneration</td><td>17</td></tr>
+                        <tr><td>6</td><td>Growth Factors and Their Functions in Wound Healing</td><td>19</td></tr>
+                        <tr><td>7</td><td>Nanomaterials for Topical Antibacterial Delivery</td><td>21</td></tr>
+                        <tr><td>8</td><td>Advantages and Limitations of 3D Bioprinting</td><td>26</td></tr>
+                        <tr><td>9</td><td>Common Immunosuppressive Agents in Allografting</td><td>29</td></tr>
+                        <tr><td>10</td><td>Cost Analysis of Traditional vs. Bioengineered Grafts</td><td>30</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="page-number">vii</div>
+
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "List_of_Tables.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

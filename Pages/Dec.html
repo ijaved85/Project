@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Declaration Page</title>
+
+        <link rel="stylesheet" href="../Css/Dec.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="title-section">
+                    <h1>DECLARATION</h1>
+                </div>
+
+                <div class="paragraph-section">
+                    <p>
+                        I do hereby declare that the final project report
+                        entitled
+                        <strong id="dec-topic">“[TOPIC]”</strong> submitted by
+                        me for the award of
+                        <strong>Bachelor of Pharmacy</strong> is a record of
+                        original work done by me.
+                    </p>
+                </div>
+
+                <div class="signature-wrapper">
+                    <div class="signature-block">
+                        <div class="signature-space"></div>
+                        <div class="signature-line"></div>
+                        <p id="dec-student-name">[STUDENT NAME]</p>
+                        <p>
+                            <span class="bold-text">Registration No:</span>
+                            <span id="dec-reg-no">[Reg No]</span>
+                        </p>
+                        <p>
+                            <span class="bold-text">Roll No:</span>
+                            <span id="dec-roll-no">[Roll No]</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="place-date-block">
+                    <p>
+                        <span class="bold-text">Place:</span> Radiant Institute
+                        of Pharmaceutical Sciences
+                    </p>
+                    <p>
+                        <span class="bold-text">Date:</span>
+                        <span id="dec-date">[Date]</span>
+                    </p>
+                </div>
+
+                <div class="page-number">ii</div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Formatting text to uppercase for a formal look
+                const topicRaw = localStorage.getItem("topic") || "[Topic]";
+                document.getElementById("dec-topic").innerText =
+                    `“${topicRaw.toUpperCase()}”`;
+
+                const nameRaw =
+                    localStorage.getItem("studentName") || "[Student Name]";
+                document.getElementById("dec-student-name").innerText =
+                    nameRaw.toUpperCase();
+
+                document.getElementById("dec-reg-no").innerText =
+                    localStorage.getItem("regNumber") || "[Reg No]";
+                document.getElementById("dec-roll-no").innerText =
+                    localStorage.getItem("rollNumber") || "[Roll No]";
+
+                // Format the date nicely (from YYYY-MM-DD to DD-MM-YYYY)
+                let dateVal = localStorage.getItem("subDate");
+                if (dateVal) {
+                    const [year, month, day] = dateVal.split("-");
+                    dateVal = `${day}-${month}-${year}`;
+                } else {
+                    dateVal = "[Date]";
+                }
+                document.getElementById("dec-date").innerText = dateVal;
+            });
+
+            document
+                .getElementById("downloadBtn")
+                .addEventListener("click", function () {
+                    const btnContainer =
+                        document.getElementById("btn-container");
+                    btnContainer.style.display = "none";
+
+                    const element = document.getElementById("pdf-content");
+                    const opt = {
+                        margin: 0,
+                        filename: "Declaration_Page.pdf",
+                        image: { type: "png" },
+                        html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                        jsPDF: {
+                            unit: "mm",
+                            format: "a4",
+                            orientation: "portrait"
+                        }
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(element)
+                        .save()
+                        .then(() => {
+                            btnContainer.style.display = "flex";
+                        });
+                });
+        </script>
+    </body>
+</html>

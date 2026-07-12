@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Project Front Page</title>
+
+        <link rel="stylesheet" href="../Css/Trying.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <img
+                    src="../Img/AKULogo.png"
+                    class="watermark"
+                    alt="Watermark"
+                />
+
+                <div class="top-subtext">
+                    A Final Project Report Submitted To
+                </div>
+                <div class="uni-name">
+                    Aryabhatta Knowledge University (AKU)
+                </div>
+
+                <img src="../Img/AKULogo.png" alt="AKU Logo" class="logo-img" />
+
+                <div class="top-subtext">
+                    For the partial fulfillment of the requirements for the
+                    Degree of
+                </div>
+                <div class="degree-name">BACHELOR OF PHARMACY</div>
+
+                <div class="project-title" id="front-topic">
+                    A REVIEW ON [TOPIC]
+                </div>
+
+                <div class="details-grid">
+                    <div class="detail-block">
+                        <div class="detail-label">Submitted By:</div>
+                        <div class="detail-val" id="front-student-name">
+                            [STUDENT NAME]
+                        </div>
+                        <div class="detail-sub">
+                            B. Pharm 4<sup>th</sup> Year, 8<sup>th</sup>
+                            Semester
+                        </div>
+                        <div class="detail-muted">Session: 2022-2026</div>
+                        <div class="detail-muted">
+                            Reg No: <strong id="front-reg-no">[REG NO]</strong>
+                        </div>
+                        <div class="detail-muted">
+                            Roll No:
+                            <strong id="front-roll-no">[ROLL NO]</strong>
+                        </div>
+                    </div>
+
+                    <div class="detail-block right">
+                        <div class="detail-label">
+                            Under The Supervision Of:
+                        </div>
+                        <div class="detail-val" id="front-supervisor-name">
+                            [Supervisor Name]
+                        </div>
+                        <div class="detail-sub" id="front-supervisor-title">
+                            Assistant Professor
+                        </div>
+                        <div class="detail-muted">
+                            Department of Pharmaceutics
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="institute-name">
+                        Radiant Institute of Pharmaceutical Sciences
+                    </div>
+                    <p class="address">
+                        Fatma Nagar, Salkitengarmari, Kishanganj, BelwaKasipur,
+                        Bihar 855107
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const topicRaw = localStorage.getItem("topic") || "[TOPIC]";
+                document.getElementById("front-topic").innerText =
+                    `A REVIEW ON ${topicRaw.toUpperCase()}`;
+
+                const nameRaw =
+                    localStorage.getItem("studentName") || "[STUDENT NAME]";
+                document.getElementById("front-student-name").innerText =
+                    nameRaw.toUpperCase();
+
+                document.getElementById("front-reg-no").innerText =
+                    localStorage.getItem("regNumber") || "[REG NO]";
+                document.getElementById("front-roll-no").innerText =
+                    localStorage.getItem("rollNumber") || "[ROLL NO]";
+
+                document.getElementById("front-supervisor-name").innerText =
+                    localStorage.getItem("supervisor") || "[Supervisor Name]";
+                document.getElementById("front-supervisor-title").innerText =
+                    localStorage.getItem("supervisorTitle") ||
+                    "Assistant Professor";
+            });
+
+            document
+                .getElementById("downloadBtn")
+                .addEventListener("click", function () {
+                    const btnContainer =
+                        document.getElementById("btn-container");
+                    btnContainer.style.display = "none";
+
+                    const element = document.getElementById("pdf-content");
+                    const opt = {
+                        margin: 0,
+                        filename: "Project_Frontpage.pdf",
+                        image: { type: "png" },
+                        html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                        jsPDF: {
+                            unit: "mm",
+                            format: "a4",
+                            orientation: "portrait"
+                        }
+                    };
+
+                    html2pdf()
+                        .set(opt)
+                        .from(element)
+                        .save()
+                        .then(() => {
+                            btnContainer.style.display = "flex";
+                        });
+                });
+        </script>
+    </body>
+</html>

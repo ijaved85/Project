@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Preface Page</title>
+
+        <link rel="stylesheet" href="../Css/Preface.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navigation & Download Buttons -->
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                
+                <div class="title-section">
+                    <h1>PREFACE</h1>
+                </div>
+
+                <div class="content-section">
+                    <p>
+                        The review project entitled <strong id="preface-topic">“Advancing Skin Grafting for the Management of Burns and Chronic Wounds”</strong> was carried out to systematically compile, study, and evaluate existing scientific research and literature regarding modern therapeutic approaches for severe dermal injuries.
+                    </p>
+                    <p>
+                        The work comprises of:
+                    </p>
+                    <p>
+                        <strong>“INTRODUCTION”</strong> includes informative notes on skin grafting as a critical process for restoring the epidermal barrier to achieve desired therapeutic outcomes in wound healing. It highlights how the methods of applying grafts and biological substitutes are vital to clinical efficacy, and introduces various novel approaches integrating biomaterial science, pharmaceutics, and cellular biology based on current studies.
+                    </p>
+                    <p>
+                        <strong>“REVIEW OF LITERATURE”</strong> encompasses a comprehensive study of historical and contemporary research articles, compiling the advancements and existing data in skin grafting and chronic wound management.
+                    </p>
+                    <p>
+                        The <strong>“SUMMARY AND CONCLUSION”</strong> embodies the summary and final conclusions derived from the reviewed literature.
+                    </p>
+                    <p>
+                        The <strong>“REFERENCES”</strong> enlists the names of journals, books, and articles referred to for the compilation and completion of this review project.
+                    </p>
+                </div>
+
+                <!-- Roman Numeral Page -->
+                <div class="page-number">iv</div>
+
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                // Fetch the topic from the main form if it exists
+                const topicRaw = localStorage.getItem('topic');
+                if (topicRaw) {
+                    // Title Case formatting for the topic injection
+                    const formattedTopic = topicRaw.replace(
+                        /\w\S*/g,
+                        function(txt) {
+                            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                        }
+                    );
+                    document.getElementById('preface-topic').innerText = `“${formattedTopic}”`;
+                }
+            });
+
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Preface_Page.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>

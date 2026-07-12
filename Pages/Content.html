@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Content Page</title>
+
+        <link rel="stylesheet" href="../Css/Content.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        
+        <!-- Navigation & Download Buttons -->
+        <div id="btn-container" class="btn-container">
+            <button onclick="window.location.href='../index.html'" class="action-btn secondary">Back to Form</button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                
+                <div class="title-section">
+                    <h1>CONTENT</h1>
+                </div>
+
+                <!-- Fully Grid-Boxed Table (15 Items) -->
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Subject</th>
+                            <th>Page No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Abstract</td>
+                            <td>01</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Introduction</td>
+                            <td>2-3</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Physiology of Burns & Chronic Wounds</td>
+                            <td>4-5</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Principles of Skin Grafting</td>
+                            <td>6-7</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Traditional Autografts & Allografts</td>
+                            <td>8-10</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Bioengineered Skin Substitutes</td>
+                            <td>11-13</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Dermal Scaffolds & Matrices</td>
+                            <td>14-15</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Cellular Therapies & Stem Cells in Grafting</td>
+                            <td>16-18</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Role of Growth Factors in Wound Healing</td>
+                            <td>19-20</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Nanotechnology in Wound Care Delivery</td>
+                            <td>21-23</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>3D Bioprinting of Artificial Skin</td>
+                            <td>24-26</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Clinical Challenges & Graft Rejection</td>
+                            <td>27-29</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Future Perspectives in Regenerative Medicine</td>
+                            <td>30-31</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Conclusion</td>
+                            <td>32</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>References</td>
+                            <td>33-35</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Roman Numeral Page -->
+                <div class="page-number">v</div>
+
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("downloadBtn").addEventListener("click", function () {
+                const btnContainer = document.getElementById('btn-container');
+                btnContainer.style.display = 'none';
+
+                const element = document.getElementById("pdf-content");
+                const opt = {
+                    margin: 0,
+                    filename: "Content_Page.pdf",
+                    image: { type: "png" }, 
+                    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+                    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+                };
+                
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btnContainer.style.display = 'flex';
+                });
+            });
+        </script>
+    </body>
+</html>
