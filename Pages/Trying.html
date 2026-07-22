@@ -60,10 +60,10 @@
                         <div class="detail-muted">
                             Reg No: <strong id="front-reg-no">[REG NO]</strong>
                         </div>
-                        <div class="detail-muted">
+                     <!--   <div class="detail-muted">
                             Roll No:
                             <strong id="front-roll-no">[ROLL NO]</strong>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="detail-block right">
@@ -107,8 +107,8 @@
 
                 document.getElementById("front-reg-no").innerText =
                     localStorage.getItem("regNumber") || "[REG NO]";
-                document.getElementById("front-roll-no").innerText =
-                    localStorage.getItem("rollNumber") || "[ROLL NO]";
+              //  document.getElementById("front-roll-no").innerText =
+                  //  localStorage.getItem("rollNumber") || "[ROLL NO]";
 
                 document.getElementById("front-supervisor-name").innerText =
                     localStorage.getItem("supervisor") || "[Supervisor Name]";
