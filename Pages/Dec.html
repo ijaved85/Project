@@ -45,10 +45,10 @@
                             <span class="bold-text">Registration No:</span>
                             <span id="dec-reg-no">[Reg No]</span>
                         </p>
-                        <p>
+                    <!--    <p>
                             <span class="bold-text">Roll No:</span>
                             <span id="dec-roll-no">[Roll No]</span>
-                        </p>
+                        </p>-->
                     </div>
                 </div>
 
@@ -82,8 +82,8 @@
 
                 document.getElementById("dec-reg-no").innerText =
                     localStorage.getItem("regNumber") || "[Reg No]";
-                document.getElementById("dec-roll-no").innerText =
-                    localStorage.getItem("rollNumber") || "[Roll No]";
+              //  document.getElementById("dec-roll-no").innerText =
+                    //localStorage.getItem("rollNumber") || "[Roll No]";
 
                 // Format the date nicely (from YYYY-MM-DD to DD-MM-YYYY)
                 let dateVal = localStorage.getItem("subDate");
