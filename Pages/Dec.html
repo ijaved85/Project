@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Declaration Page</title>
+
+        <link rel="stylesheet" href="../Css/Dec.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="title-section">
+                    <h1>DECLARATION</h1>
+                </div>
+
+                <div class="paragraph-section">
+                    <p>
+                        <span id="pronoun-1">I</span> do hereby declare that the final project report
+                        entitled
+                        <strong id="dec-topic">“[TOPIC]”</strong> submitted by
+                        <span id="pronoun-2">me</span> for the award of
+                        <strong>Bachelor of Pharmacy</strong> is a record of
+                        original work done by <span id="pronoun-3">me</span>.
+                    </p>
+                </div>
+
+                <!-- Dynamic Row-Based Signature Container -->
+                <div id="signature-container" class="signature-container">
+                    <!-- JavaScript will inject the signature rows here -->
+                </div>
+
+                <div class="place-date-block">
+                    <p>
+                        <span class="bold-text">Place:</span> Radiant Institute
+                        of Pharmaceutical Sciences
+                    </p>
+                    <p>
+                        <span class="bold-text">Date:</span>
+                        <span id="dec-date">[Date]</span>
+                    </p>
+                </div>
+
+                <div class="page-number">ii</div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Topic
+                const topicRaw = localStorage.getItem("topic") || "[Topic]";
+                document.getElementById("dec-topic").innerText = `“${topicRaw.toUpperCase()}”`;
+
+                // Fetch Number of Students
+                const numStudents = parseInt(localStorage.getItem("numStudents")) || 1;
+
+                // Smart Grammar Adjustment (I/We, me/us)
+                if (numStudents > 1) {
+                    document.getElementById("pronoun-1").innerText = "We";
+                    document.getElementById("pronoun-2").innerText = "us";
+                    document.getElementById("pronoun-3").innerText = "us";
+                } else {
+                    document.getElementById("pronoun-1").innerText = "I";
+                    document.getElementById("pronoun-2").innerText = "me";
+                    document.getElementById("pronoun-3").innerText = "me";
+                }
+
+                // Dynamic Signature Rows
+                const sigContainer = document.getElementById("signature-container");
+                sigContainer.innerHTML = ""; 
+
+                for (let i = 1; i <= numStudents; i++) {
+                    const name = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;
+                    const reg = localStorage.getItem("regNumber_" + i) || `[Reg No ${i}]`;
+
+                    const row = document.createElement("div");
+                    row.className = "signature-row";
+                    
+                    // Creates the 3-column layout (Removed 'Reg No:' label)
+                    row.innerHTML = `
+                        <div class="sig-name">${name.toUpperCase()}</div>
+                        <div class="sig-reg">${reg}</div>
+                        <div class="sig-line"></div>
+                    `;
+                    sigContainer.appendChild(row);
+                }
+
+                // Format the date nicely (from YYYY-MM-DD to DD-MM-YYYY)
+                let dateVal = localStorage.getItem("subDate");
+                if (dateVal) {
+                    const [year, month, day] = dateVal.split("-");
+                    dateVal = `${day}-${month}-${year}`;
+                } else {
+                    dateVal = "[Date]";
+                }
+                document.getElementById("dec-date").innerText = dateVal;
+            });
+        </script>
+        
+        <script src="../script.js"></script>
+    </body>
+</html>

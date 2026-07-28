@@ -1,0 +1,190 @@
+/* Base Screen Styling */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 30px 0;
+}
+
+/* Navigation & Download Buttons */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s ease;
+}
+
+.action-btn.secondary {
+    background-color: #4b5563;
+}
+
+.action-btn:hover {
+    background-color: #112240;
+}
+.action-btn.secondary:hover {
+    background-color: #374151;
+}
+
+/* A4 Paper Dimensions (Strictly Locked) */
+.page {
+    background-color: white;
+    width: 794px;
+    height: 1120px;
+    box-sizing: border-box;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Premium Academic Double Border - MASTER TEMPLATE PADDING */
+.border-container {
+    border: 5px double #1a365d;
+    width: 100%;
+    height: 1030px;
+    box-sizing: border-box;
+    padding: 25px 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.title-section h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1a365d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Content Paragraphs - Perfectly formatted for 6 blocks of text */
+.content-section {
+    padding: 0 15px; /* Matches master alignment */
+}
+
+.content-section p {
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0 0 15px 0;
+    color: #111827;
+}
+
+.content-section strong {
+    font-weight: 700;
+    color: #000;
+}
+
+/* New Row-Based Signature Layout (Matched to Declaration Page) */
+.signature-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 70px; /* FIXED: Pushed 20px further up */
+    padding: 0 25px;
+    box-sizing: border-box;
+    gap: 15px;
+}
+
+.signature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.sig-name {
+    flex: 0 0 38%;
+    font-size: 15px;
+    font-weight: 800;
+    color: #000; /* FIXED: Changed from #1a365d to black */
+    white-space: nowrap;
+}
+
+.sig-reg {
+    flex: 1;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #000;
+    white-space: nowrap;
+    text-align: center;
+    padding-right: 25px;
+}
+
+.sig-line {
+    flex: 0 0 32%;
+    border-bottom: 1.5px solid #1a365d;
+    height: 10px;
+}
+
+/* Page Number 'iii' */
+.page-number {
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a365d;
+}
+
+/* Print Rules */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .btn-container {
+        display: none !important;
+    }
+    .page {
+        box-shadow: none;
+        margin: 0;
+        border: none;
+    }
+    #pdf-content {
+        box-shadow: none;
+    }
+}

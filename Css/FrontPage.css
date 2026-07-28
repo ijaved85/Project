@@ -1,0 +1,238 @@
+/* Base Screen Styling */
+body {
+    background-color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 30px 0;
+}
+
+/* Navigation & Download Buttons */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.2s ease;
+}
+
+.action-btn.secondary {
+    background-color: #4b5563;
+}
+
+.action-btn:hover {
+    background-color: #112240;
+}
+
+.action-btn.secondary:hover {
+    background-color: #374151;
+}
+
+/* Wrapper for Multiple Pages */
+#pdf-content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+/* A4 Paper Dimensions */
+.page {
+    background-color: white;
+    width: 794px;
+    height: 1120px;
+    box-sizing: border-box;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Premium Academic Double Border */
+.border-container {
+    border: 5px double #1a365d;
+    width: 100%;
+    height: 1030px;
+    box-sizing: border-box;
+    padding: 30px 25px; 
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Watermark */
+.border-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 330px;
+    height: 330px;
+    background-image: url("../Img/AKULogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+/* Typography for Front Page */
+.section {
+    width: 100%;
+}
+
+/* Project Topic Title */
+h1 {
+    font-size: 21px; 
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+    color: #1a365d; 
+    padding: 0 15px;
+}
+
+/* General Paragraphs */
+p {
+    margin: 4px 0;
+    font-size: 15.5px;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #000;
+}
+
+/* The elegant formal academic phrases */
+.formal-text {
+    font-size: 16px;
+    font-weight: 500;
+    font-style: italic; /* Re-added for the traditional look */
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Major Headings (AKU and B.PHARM) */
+.highlight {
+    font-weight: 800;
+    font-size: 17.5px;
+    color: #1a365d; 
+    margin: 6px 0;
+}
+
+/* Formal Labels ("Submitted By" & "Under the supervision of") */
+.form-label {
+    font-size: 16.5px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+/* Group Project Names & Reg Nos */
+.group-names {
+    font-size: 16.5px; /* Increased to match/exceed B.Pharm size */
+    font-weight: 800;
+    color: #1a365d;
+    margin: 4px 0;
+    line-height: 1.8; 
+}
+
+.group-regs {
+    font-size: 15.5px; /* Increased to match B.Pharm size */
+    font-weight: 700;
+    color: #333;
+    margin: 4px 0;
+    line-height: 1.8; 
+}
+
+/* Supervisor Name Styling */
+#front-supervisor-name {
+    font-size: 16.5px; /* Scaled down perfectly to match the students */
+    font-weight: 800;
+    color: #1a365d;
+    margin: 4px 0;
+}
+
+/* AND Separator */
+.and-separator {
+    font-weight: 800;
+    font-size: 16.5px;
+    margin: 20px 0;
+    color: #1a365d;
+}
+
+/* --- Spacing and Organization --- */
+
+.title-section {
+    margin-bottom: 25px;
+}
+
+.logo-section {
+    margin-bottom: 25px;
+}
+
+.logo-img {
+    max-width: 120px; 
+    max-height: 120px;
+    display: block;
+    margin: 0 auto;
+}
+
+.student-section {
+    margin-bottom: 25px;
+}
+
+.supervisor-section {
+    margin-bottom: 40px; 
+}
+
+/* Clean Footer without the border line */
+.footer-section {
+    margin-bottom: 10px;
+}
+
+.institute-name {
+    font-size: 20.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #1a365d;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.address {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Print Rules */
+@media print {
+    body {
+        background-color: white;
+        padding: 0;
+    }
+    .btn-container {
+        display: none !important;
+    }
+    #pdf-content {
+        box-shadow: none;
+    }
+}

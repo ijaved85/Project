@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Acknowledgement Page</title>
+
+        <link rel="stylesheet" href="../Css/Ack.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="title-section">
+                    <h1>ACKNOWLEDGEMENT</h1>
+                </div>
+
+                <div class="content-section">
+                    <p>
+                        Words are very poor comforters to express the deep depth
+                        of gratitude which one feels in one's corner of the
+                        heart when one is helped to achieve the ultimate goal,
+                        in this boundless and endless field of research work,
+                        but since there is no other way which can be better to
+                        express one's feelings of respect and gratitude than
+                        this, <span class="pro-i">I</span> wish to take opportunity to thank the following
+                        who have assisted the completion of this project.
+                    </p>
+                    <p>
+                        Firstly, <span class="pro-i">I</span> take this opportunity to express <span class="pro-my">my</span> heartfelt
+                        gratitude and indebtedness to <span class="pro-my">my</span> respected supervisor
+                        <strong id="ack-supervisor-name">[Supervisor Name]</strong>,
+                        <span id="ack-supervisor-title">[Supervisor Title]</span>, 
+                        <span id="ack-department">Department of Pharmaceutics</span>,
+                        <strong>Radiant Institute of Pharmaceutical Sciences</strong>
+                        who constantly motivated, supported, encouraged and
+                        guided <span class="pro-me">me</span>. Their invaluable guidance and continuous help
+                        in every aspect enabled <span class="pro-me">me</span> to complete <span class="pro-my">my</span> project and
+                        without their cooperation <span class="pro-i">I</span> would not have presented
+                        this dissertation successfully. <span class="pro-i">I</span> am highly thankful, to
+                        the <strong>Management</strong> of
+                        <strong>Radiant Institute of Pharmaceutical Sciences</strong>
+                        for providing all facility and infrastructure during B.
+                        Pharm academic programme.
+                    </p>
+                    <p>
+                        <span class="pro-i">I</span> take <span class="pro-my">my</span> deep sense of gratitude and reverence to
+                        <strong>Dr. Subarna Ganguli</strong> Principal of the
+                        <strong>Pharmaceutical Chemistry, Radiant Institute of
+                            Pharmaceutical Sciences</strong>
+                        for providing <span class="pro-me">me</span> the requisite opportunities and
+                        facilities.
+                    </p>
+                    <p>
+                        <span class="pro-i">I</span> further avail this opportunity and profound privilege
+                        to optimize <span class="pro-my">my</span> deepest sense of gratitude to all faculty
+                        members, technical staffs and non-technical staffs of
+                        Department of
+                        <strong>Pharmacy and Radiant Institute of Pharmaceutical
+                            Sciences</strong>.
+                    </p>
+                    <p>
+                        <span class="pro-i">I</span> would like to thank <span class="pro-my">my</span> batchmates for their Moral
+                        support, assistance and enthusiasm throughout the entire
+                        session which made <span class="pro-my">my</span> stay in this institute a truly
+                        memorable and worth remembering. Last but not the least
+                        <span class="pro-i">I</span> would like to thank <span class="pro-my">my</span> parents for their love, Moral
+                        support and appreciation whenever <span class="pro-i">I</span> needed.
+                    </p>
+                    <p>
+                        <span class="pro-i">I</span> will be highly glad and indebted forever to all the
+                        people for their generosity and kindness. <span class="pro-i">I</span> also express
+                        <span class="pro-my">my</span> sincere apologies that <span class="pro-i">I</span> could not mention everyone
+                        personally one by one.
+                    </p>
+                </div>
+
+                <!-- Dynamic Row-Based Signature Container (Synced with Declaration) -->
+                <div id="signature-container" class="signature-container">
+                    <!-- JavaScript will inject signature blocks here -->
+                </div>
+
+                <div class="page-number">iii</div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const numStudents = parseInt(localStorage.getItem("numStudents")) || 1;
+
+                // 1. Smart Grammar Engine: Changes I/my/me to We/our/us for group projects
+                if (numStudents > 1) {
+                    document.querySelectorAll('.pro-i').forEach(el => el.innerText = "We");
+                    document.querySelectorAll('.pro-my').forEach(el => el.innerText = "our");
+                    document.querySelectorAll('.pro-me').forEach(el => el.innerText = "us");
+                }
+
+                // 2. Dynamic Department Routing
+                const supervisorName = localStorage.getItem("supervisor") || "[Supervisor Name]";
+                let department = "Department of Pharmaceutics"; 
+                const supLower = supervisorName.toLowerCase();
+
+                if (supLower.includes("samar")) {
+                    department = "Department of Pharmaceutics";
+                } else if (supLower.includes("aniket") || supLower.includes("mosatfizur") || supLower.includes("mostafizur")) {
+                    department = "Department of Pharmacognosy";
+                } else if (supLower.includes("papan") || supLower.includes("ganguli")) {
+                    department = "Department of Pharmaceutical Chemistry";
+                } else if (supLower.includes("mamdooh") || supLower.includes("asad") || supLower.includes("arshad") || supLower.includes("haque")) {
+                    department = "Department of Pharmacology";
+                }
+                document.getElementById("ack-department").innerText = department;
+
+                // 3. Populate Supervisor Details
+                let supervisorTitle = localStorage.getItem("supervisorTitle") || "Assistant Professor";
+                if (supervisorTitle.includes(" of")) {
+                    supervisorTitle = supervisorTitle.replace(" of", "");
+                }
+                document.getElementById("ack-supervisor-name").innerText = supervisorName;
+                document.getElementById("ack-supervisor-title").innerText = supervisorTitle;
+
+                // 4. Dynamic Signature Rows (Matched exactly to Declaration logic)
+                const sigContainer = document.getElementById("signature-container");
+                sigContainer.innerHTML = ""; 
+
+                for (let i = 1; i <= numStudents; i++) {
+                    const name = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;
+                    const reg = localStorage.getItem("regNumber_" + i) || `[Reg No ${i}]`;
+
+                    const row = document.createElement("div");
+                    row.className = "signature-row";
+                    
+                    row.innerHTML = `
+                        <div class="sig-name">${name.toUpperCase()}</div>
+                        <div class="sig-reg">${reg}</div>
+                        <div class="sig-line"></div>
+                    `;
+                    sigContainer.appendChild(row);
+                }
+            });
+        </script>
+        <script src="../script.js"></script>
+    </body>
+</html>

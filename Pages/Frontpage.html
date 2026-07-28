@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Project Front Page</title>
+
+        <link rel="stylesheet" href="../Css/FrontPage.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <!-- Standardized Master Button Container -->
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                
+                <div class="section title-section">
+                    <h1 id="front-topic"></h1>
+                    
+                    <p class="formal-text">For the partial fulfillment of the requirements for the Degree of</p>
+                    <p class="highlight">BACHELOR OF PHARMACY</p>
+                    
+                    <p class="formal-text">A Final Project Report Submitted To</p>
+                    <p class="highlight">Aryabhatta Knowledge University (AKU)</p>
+                </div>
+
+                <div class="section logo-section">
+                    <img
+                        src="../Img/AKULogo.png"
+                        alt="AKU Logo"
+                        class="logo-img"
+                    />
+                </div>
+
+                <div class="section student-section">
+                    <p class="form-label">Submitted By</p>
+                    
+                    <!-- Dynamic Container for Group Members -->
+                    <div id="front-student-list"></div>
+
+                    <p style="margin-top: 18px;">
+                        B. Pharm 4<sup>th</sup> Year, 8<sup>th</sup> Semester,
+                    </p>
+                    <p>Session: 2022-26</p>
+                </div>
+
+                <p class="and-separator">AND</p>
+
+                <div class="section supervisor-section">
+                    <p class="form-label">Under the supervision of</p>
+                    <p id="front-supervisor-name">
+                        [Supervisor Name]
+                    </p>
+                    <p>
+                        (<span id="front-supervisor-title">Assistant Professor</span>)
+                    </p>
+                    <!-- Dynamic Department Field -->
+                    <p id="front-department" style="font-weight: 700; margin-top: 5px;">Department of Pharmaceutics</p>
+                </div>
+
+                <div class="section footer-section">
+                    <div class="institute-name">
+                        RADIANT INSTITUTE OF PHARMACEUTICAL SCIENCES
+                    </div>
+                    <p class="address">
+                        Fatma Nagar, Salkitengarmari, Kishanganj, BelwaKasipur,
+                        Bihar 855107
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Topic to uppercase
+                const topicRaw = localStorage.getItem("topic") || "[TOPIC]";
+                document.getElementById("front-topic").innerText =
+                    `${topicRaw.toUpperCase()}`;
+
+                // Fetch Student Data
+                const numStudents = parseInt(localStorage.getItem("numStudents")) || 1;
+                let namesArray = [];
+                let regsArray = [];
+
+                for (let i = 1; i <= numStudents; i++) {
+                    const rawName = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;
+                    const rawReg = localStorage.getItem("regNumber_" + i) || `[Reg ${i}]`;
+                    
+                    namesArray.push(`<span style="white-space: nowrap;">${rawName.toUpperCase()}</span>`);
+                    regsArray.push(`<span style="white-space: nowrap;">Reg. No - ${rawReg}</span>`);
+                }
+
+                // Smart Grouping Logic
+                function getChunks(n) {
+                    if (n <= 4) return [n]; 
+                    if (n === 5) return [3, 2]; 
+                    if (n === 6) return [3, 3];
+                    if (n === 7) return [4, 3];
+                    if (n === 8) return [4, 4];
+                    if (n === 9) return [3, 3, 3];
+                    return [4, 3, 3]; 
+                }
+
+                const chunks = getChunks(numStudents);
+                const studentListContainer = document.getElementById("front-student-list");
+                studentListContainer.innerHTML = "";
+                let currentIndex = 0;
+
+                chunks.forEach(chunkSize => {
+                    const chunkNames = namesArray.slice(currentIndex, currentIndex + chunkSize);
+                    const chunkRegs = regsArray.slice(currentIndex, currentIndex + chunkSize);
+                    
+                    const chunkDiv = document.createElement("div");
+                    chunkDiv.style.marginBottom = "10px"; 
+                    
+                    chunkDiv.innerHTML = `
+                        <p class="group-names">${chunkNames.join(",&nbsp;&nbsp; ")}</p>
+                        <p class="group-regs">${chunkRegs.join(",&nbsp;&nbsp; ")}</p>
+                    `;
+                    studentListContainer.appendChild(chunkDiv);
+                    
+                    currentIndex += chunkSize;
+                });
+
+                // Supervisor Rendering & Dynamic Department Logic
+                const supervisorName = localStorage.getItem("supervisor") || "[Supervisor Name]";
+                document.getElementById("front-supervisor-name").innerText = supervisorName;
+                document.getElementById("front-supervisor-title").innerText = localStorage.getItem("supervisorTitle") || "Assistant Professor";
+
+                // Determine Department based on Supervisor
+                let department = "Department of Pharmaceutics"; 
+                const supLower = supervisorName.toLowerCase();
+
+                if (supLower.includes("samar")) {
+                    department = "Department of Pharmaceutics";
+                } else if (supLower.includes("aniket") || supLower.includes("mosatfizur") || supLower.includes("mostafizur")) {
+                    department = "Department of Pharmacognosy";
+                } else if (supLower.includes("papan") || supLower.includes("ganguli")) {
+                    department = "Department of Pharmaceutical Chemistry";
+                } else if (supLower.includes("mamdooh") || supLower.includes("asad") || supLower.includes("arshad") || supLower.includes("haque")) {
+                    department = "Department of Pharmacology";
+                }
+
+                document.getElementById("front-department").innerText = department;
+            });
+        </script>
+
+        <script src="../script.js"></script>
+    </body>
+</html>

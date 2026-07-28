@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=800, initial-scale=1.0" />
+        <title>Certificate Page</title>
+
+        <link rel="stylesheet" href="../Css/Certi.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    </head>
+    <body>
+        <div id="btn-container" class="btn-container">
+            <button
+                onclick="window.location.href = '../index.html'"
+                class="action-btn secondary"
+            >
+                Back to Form
+            </button>
+            <button id="downloadBtn" class="action-btn">Download PDF</button>
+        </div>
+
+        <div class="page" id="pdf-content">
+            <div class="border-container">
+                <div class="title-section">
+                    <h1>CERTIFICATE</h1>
+                </div>
+
+                <div class="paragraph-section">
+                    <p>
+                        This is to certify that the dissertation incorporated in
+                        this final project report entitled
+                        <strong>“<span id="cert-topic">[TOPIC]</span>”</strong>
+                        by
+                        <strong id="cert-student-name">[STUDENT NAME]</strong>
+                        in partial fulfillment of the requirement for the degree
+                        of Bachelor of Pharmacy under
+                        <strong>Aryabhatta Knowledge University</strong>, is a
+                        record of <span id="pronoun1">his/her</span> original work under the supervision of
+                        <strong id="cert-supervisor-name">[Supervisor Name]</strong>. 
+                        Neither <span id="pronoun2">his/her</span> project report nor any part of it has
+                        been submitted for any degree or any award anywhere
+                        before.
+                    </p>
+                </div>
+
+                <div class="signatures-row">
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">PROJECT SUPERVISOR</p>
+                        <p id="cert-sig-name">[Supervisor Name]</p>
+                        <p>
+                            <span id="cert-sig-title">[Supervisor Title]</span>
+                        </p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">HEAD OF THE INSTITUTION</p>
+                        <p>Prof. (Dr.) Subarna Ganguli</p>
+                        <p>Principal</p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+                </div>
+
+                <div class="signatures-row bottom-row">
+                    <div class="signature-block">
+                        <div class="sign-line"></div>
+                        <p class="bold-text">Controller of Examination</p>
+                        <p>Radiant Institute of Pharmaceutical Sciences</p>
+                    </div>
+                </div>
+
+                <div class="page-number">i</div>
+            </div>
+        </div>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                // Topic
+                const topicRaw = localStorage.getItem("topic") || "[Topic]";
+                document.getElementById("cert-topic").innerText = topicRaw.toUpperCase();
+
+                // Dynamic Student Group Logic
+                const numStudents = parseInt(localStorage.getItem("numStudents")) || 1;
+                let studentsTextArray = [];
+
+                for (let i = 1; i <= numStudents; i++) {
+                    const name = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;
+                    const reg = localStorage.getItem("regNumber_" + i) || `[Reg ${i}]`;
+                    
+                    // FIXED: Removed the nowrap span that caused huge gaps.
+                    // Tightly formatted the registration number so it won't break awkwardly on its own.
+                    studentsTextArray.push(`${name.toUpperCase()} (${reg})`);
+                }
+
+                // Join the names grammatically
+                let finalStudentString = "";
+                if (studentsTextArray.length === 1) {
+                    finalStudentString = studentsTextArray[0];
+                } else if (studentsTextArray.length === 2) {
+                    finalStudentString = studentsTextArray.join(" and ");
+                } else {
+                    const lastStudent = studentsTextArray.pop();
+                    finalStudentString = studentsTextArray.join(", ") + ", and " + lastStudent;
+                }
+
+                // Push back to innerText
+                document.getElementById("cert-student-name").innerText = finalStudentString;
+
+                // Smart Grammar Correction for Groups (his/her -> their)
+                if (numStudents > 1) {
+                    document.getElementById("pronoun1").innerText = "their";
+                    document.getElementById("pronoun2").innerText = "their";
+                } else {
+                    document.getElementById("pronoun1").innerText = "his/her";
+                    document.getElementById("pronoun2").innerText = "his/her";
+                }
+
+                // Supervisor
+                const supervisor = localStorage.getItem("supervisor") || "[Supervisor Name]";
+                document.getElementById("cert-supervisor-name").innerText = supervisor;
+                document.getElementById("cert-sig-name").innerText = supervisor;
+
+                let supervisorTitle = localStorage.getItem("supervisorTitle") || "Assistant Professor";
+                if (supervisorTitle.includes(" of")) {
+                    supervisorTitle = supervisorTitle.replace(" of", "");
+                }
+                document.getElementById("cert-sig-title").innerText = supervisorTitle;
+            });
+        </script>
+        
+        <script src="../script.js"></script>
+    </body>
+</html>

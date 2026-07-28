@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project Data Entry</title>
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <div class="form-container">
+            <div class="header-section">
+                <h2>Group Project</h2>
+            </div>
+
+            <form id="projectForm">
+                <!-- Project Topic -->
+                <div class="form-group">
+                    <label for="topic">Project Topic</label>
+                    <input
+                        type="text"
+                        id="topic"
+                        placeholder="e.g. Artificial Intelligence in Pharmacy"
+                        required
+                    />
+                </div>
+
+                <!-- Dynamic Student Generator -->
+                <div class="form-group inline-group">
+                    <label for="numStudents">Number of Students</label>
+                    <input
+                        type="number"
+                        id="numStudents"
+                        min="1"
+                        max="10"
+                        value="1"
+                        required
+                    />
+                </div>
+
+                <!-- Container for Dynamic Student Fields -->
+                <div id="studentsContainer"></div>
+
+                <div class="form-group">
+                    <label for="subDate">Submission Date</label>
+                    <input type="date" id="subDate" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="supervisor">Project Supervisor</label>
+                    <select id="supervisor" required>
+                        <option value="" disabled selected>
+                            Select Supervisor...
+                        </option>
+                        <option
+                            value="Mr. Papan Garai"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Papan Garai
+                        </option>
+                        <option
+                            value="Mr. Mostafizur Rahman"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Mostafizur Rahman
+                        </option>
+                        <option
+                            value="Mr. Samar Dule"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Samar Dule
+                        </option>
+                        <option
+                            value="Mr. Aniket Gupta"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Aniket Gupta
+                        </option>
+                        <option
+                            value="Mr. Md Mamdoohul Haque"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Md Mamdoohul Haque
+                        </option>
+                        <option
+                            value="Mr. Asad Arzoo"
+                            data-title="Assistant Professor"
+                        >
+                            Mr. Asad Arzoo
+                        </option>
+                        <option
+                            value="Dr. Subarna Ganguli"
+                            data-title="Principal"
+                        >
+                            Dr. Subarna Ganguli
+                        </option>
+                    </select>
+                </div>
+            </form>
+
+            <hr class="divider" />
+
+            <!-- Only the 4 requested pages -->
+            <div class="button-group">
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/FrontPage.html')"
+                >
+                    Front Page
+                </button>
+                <button
+                    type="button"
+                    onclick="goToPage('Pages/Certificate.html')"
+                >
+                    Certificate
+                </button>
+                <button type="button" onclick="goToPage('Pages/Dec.html')">
+                    Declaration
+                </button>
+                <button type="button" onclick="goToPage('Pages/Ack.html')">
+                    Acknowledgement
+                </button>
+            </div>
+        </div>
+
+        <script>
+            // Elements
+            const numStudentsInput = document.getElementById("numStudents");
+            const studentsContainer =
+                document.getElementById("studentsContainer");
+            const topicInput = document.getElementById("topic");
+            const subDateInput = document.getElementById("subDate");
+            const supervisorInput = document.getElementById("supervisor");
+
+            // Load Data on Start
+            window.addEventListener("DOMContentLoaded", () => {
+                topicInput.value = localStorage.getItem("topic") || "";
+                subDateInput.value = localStorage.getItem("subDate") || "";
+                supervisorInput.value =
+                    localStorage.getItem("supervisor") || "";
+
+                const savedNum = localStorage.getItem("numStudents");
+                if (savedNum) {
+                    numStudentsInput.value = savedNum;
+                }
+
+                renderStudentFields(); // Build dynamic fields
+            });
+
+            // Dynamic Generator
+            function renderStudentFields() {
+                const count = parseInt(numStudentsInput.value) || 1;
+                studentsContainer.innerHTML = "";
+
+                for (let i = 1; i <= count; i++) {
+                    const block = document.createElement("div");
+                    block.className = "student-block";
+                    block.innerHTML = `
+                        <div class="student-header">Student ${i}</div>
+                        <div class="form-group">
+                            <label for="studentName_${i}">Name</label>
+                            <input type="text" id="studentName_${i}" placeholder="Student Name" required />
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="regNumber_${i}">Registration Number</label>
+                            <input type="text" id="regNumber_${i}" placeholder="Reg. No" required />
+                        </div>
+                    `;
+                    studentsContainer.appendChild(block);
+
+                    // Restore saved data for these specific fields if they exist
+                    const nameEl = document.getElementById(`studentName_${i}`);
+                    const regEl = document.getElementById(`regNumber_${i}`);
+                    nameEl.value =
+                        localStorage.getItem(`studentName_${i}`) || "";
+                    regEl.value = localStorage.getItem(`regNumber_${i}`) || "";
+
+                    // Attach real-time save listeners
+                    nameEl.addEventListener("input", saveToLocal);
+                    regEl.addEventListener("input", saveToLocal);
+                }
+            }
+
+            // Save everything to localStorage
+            const saveToLocal = () => {
+                localStorage.setItem("topic", topicInput.value);
+                localStorage.setItem("subDate", subDateInput.value);
+                localStorage.setItem("numStudents", numStudentsInput.value);
+
+                if (supervisorInput.selectedIndex > 0) {
+                    const selectedOption =
+                        supervisorInput.options[supervisorInput.selectedIndex];
+                    localStorage.setItem("supervisor", selectedOption.value);
+                    localStorage.setItem(
+                        "supervisorTitle",
+                        selectedOption.getAttribute("data-title")
+                    );
+                }
+
+                let allNames = [];
+                let allRegs = [];
+                const count = parseInt(numStudentsInput.value) || 1;
+
+                // Loop through dynamic fields
+                for (let i = 1; i <= count; i++) {
+                    const nameEl = document.getElementById(`studentName_${i}`);
+                    const regEl = document.getElementById(`regNumber_${i}`);
+
+                    if (nameEl && regEl) {
+                        localStorage.setItem(`studentName_${i}`, nameEl.value);
+                        localStorage.setItem(`regNumber_${i}`, regEl.value);
+
+                        if (nameEl.value) allNames.push(nameEl.value);
+                        if (regEl.value) allRegs.push(regEl.value);
+                    }
+                }
+
+                // Saves concatenated strings for your old FrontPage format
+                localStorage.setItem("studentName", allNames.join(", "));
+                localStorage.setItem("regNumber", allRegs.join(", "));
+            };
+
+            // Event Listeners for Static Fields
+            numStudentsInput.addEventListener("input", () => {
+                saveToLocal();
+                renderStudentFields();
+            });
+            topicInput.addEventListener("input", saveToLocal);
+            subDateInput.addEventListener("input", saveToLocal);
+            supervisorInput.addEventListener("change", saveToLocal);
+
+            // Validation & Navigation
+            function goToPage(url) {
+                const form = document.getElementById("projectForm");
+                if (form.reportValidity()) {
+                    saveToLocal();
+                    window.location.href = url;
+                }
+            }
+        </script>
+    </body>
+</html>
