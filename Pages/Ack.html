@@ -85,9 +85,17 @@
                     </p>
                 </div>
 
-                <!-- Dynamic Row-Based Signature Container (Synced with Declaration) -->
+                <!-- Dynamic Row-Based Signature Container with Column Headers -->
                 <div id="signature-container" class="signature-container">
-                    <!-- JavaScript will inject signature blocks here -->
+                    
+                    <!-- Column Header Row -->
+                    <div class="signature-header-row">
+                        <div class="header-name">NAME</div>
+                        <div class="header-reg">REGISTRATION NUMBER</div>
+                        <div class="header-sign">SIGNATURE</div>
+                    </div>
+
+                    <!-- JavaScript will inject signature blocks below this -->
                 </div>
 
                 <div class="page-number">iii</div>
@@ -129,9 +137,11 @@
                 document.getElementById("ack-supervisor-name").innerText = supervisorName;
                 document.getElementById("ack-supervisor-title").innerText = supervisorTitle;
 
-                // 4. Dynamic Signature Rows (Matched exactly to Declaration logic)
+                // 4. Dynamic Signature Rows with Headers Maintained
                 const sigContainer = document.getElementById("signature-container");
+                const headerRow = sigContainer.querySelector(".signature-header-row");
                 sigContainer.innerHTML = ""; 
+                sigContainer.appendChild(headerRow);
 
                 for (let i = 1; i <= numStudents; i++) {
                     const name = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;

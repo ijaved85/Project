@@ -38,7 +38,15 @@
 
                 <!-- Dynamic Row-Based Signature Container -->
                 <div id="signature-container" class="signature-container">
-                    <!-- JavaScript will inject the signature rows here -->
+                    
+                    <!-- Column Header Row -->
+                    <div class="signature-header-row">
+                        <div class="header-name">NAME</div>
+                        <div class="header-reg">REGISTRATION NUMBER</div>
+                        <div class="header-sign">SIGNATURE</div>
+                    </div>
+
+                    <!-- JavaScript will inject the student signature rows below this -->
                 </div>
 
                 <div class="place-date-block">
@@ -78,7 +86,11 @@
 
                 // Dynamic Signature Rows
                 const sigContainer = document.getElementById("signature-container");
+                
+                // Keep the header row, clear out old student rows
+                const headerRow = sigContainer.querySelector(".signature-header-row");
                 sigContainer.innerHTML = ""; 
+                sigContainer.appendChild(headerRow);
 
                 for (let i = 1; i <= numStudents; i++) {
                     const name = localStorage.getItem("studentName_" + i) || `[Student ${i}]`;
@@ -87,7 +99,6 @@
                     const row = document.createElement("div");
                     row.className = "signature-row";
                     
-                    // Creates the 3-column layout (Removed 'Reg No:' label)
                     row.innerHTML = `
                         <div class="sig-name">${name.toUpperCase()}</div>
                         <div class="sig-reg">${reg}</div>
